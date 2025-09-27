@@ -29,7 +29,7 @@ class PersilController extends Controller
      */
     public function create()
     {
-        // komen pertama
+        // komen kedua
     }
 
     /**
