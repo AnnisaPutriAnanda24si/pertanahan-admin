@@ -29,13 +29,11 @@ class JenisPenggunaanController extends Controller
      */
 public function store(Request $request)
 {
-    // Validasi data yang masuk
     $data = $request->validate([
-        'nama_penggunaan' => 'required|string|max:255|unique:jenis_penggunaan,nama_penggunaan',
+        'nama_penggunaan' => 'required|string|max:100|unique:jenis_penggunaan,nama_penggunaan',
         'keterangan' => 'nullable|string',
     ]);
 
-    // Membuat record baru hanya dengan data yang sudah divalidasi
     JenisPenggunaan::create($data);
 
     return redirect()->route('jenis_penggunaan.index')->with('success','Penambahan Data Berhasil!');
@@ -64,10 +62,14 @@ public function store(Request $request)
     public function update(Request $request, string $id)
 {
     $jenis = JenisPenggunaan::findOrFail($id);
+
     $data = $request->validate([
         'nama_penggunaan' => ['required','string','max:255','unique:jenis_penggunaan,nama_penggunaan,' . $id . ',' . 'jenis_id'],
         'keterangan' => 'nullable|string',
     ]);
+
+    // $jenis->nama_penggunaan = $request->nama_penggunaan;
+    // $jenis->keterangan = $request->keterangan;
 
     $jenis->fill($data);
     $jenis->save();

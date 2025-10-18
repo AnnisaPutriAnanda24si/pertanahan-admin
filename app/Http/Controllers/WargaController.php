@@ -76,8 +76,8 @@ class WargaController extends Controller
         'jenis_kelamin' => 'required',
         'agama' => 'required|string|max:50',
         'pekerjaan' => 'required|string|max:255',
-        'telp' => 'nullable|string|max:15',
-        'email' => ['nullable','email','max:255','unique:warga,email,' . $id . ',' . 'warga_id'],
+        'telp' => 'required|string|max:15',
+        'email' => ['required','email','max:255','unique:warga,email,' . $id . ',' . 'warga_id'],
     ]);
 
     $warga->fill($data);
