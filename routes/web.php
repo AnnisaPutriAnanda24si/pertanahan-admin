@@ -11,17 +11,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/persil/index', [PersilController::class, 'index'])
-         ->name('persil.index');
+// Route::get('/persil/index', [PersilController::class, 'index'])
+//          ->name('persil.index');
 
-Route::get('/auth', [AuthController::class, 'index']) //Route /auth method GET → Menampilkan halaman login.
-		->name('auth.index');
+Route::get('/auth', [AuthController::class, 'login'])->name('login');
+Route::get('/auth/register', [AuthController::class, 'register'])->name('regis');
+Route::post('auth/authentication', [AuthController::class, 'authentication'])->name('login.auth');
+Route::post('auth/registration', [AuthController::class, 'registration'])->name('regis.regis');
 
-Route::post('auth/login', [AuthController::class, 'login']) //Route /auth/login method POST → Memproses form login.
-		->name('auth.login');
-
-Route::get('dashboard', [DashboardController::class, 'index'])
-         ->name('dashboard');
+// Route::get('dashboard', [DashboardController::class, 'index'])
+//          ->name('dashboard');
 
 Route::resource('warga', WargaController::class);
 Route::resource('jenis_penggunaan', JenisPenggunaanController::class);

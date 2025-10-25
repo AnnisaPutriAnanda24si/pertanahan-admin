@@ -13,7 +13,7 @@ class JenisPenggunaanController extends Controller
     public function index()
     {
         $data['jenis_penggunaan'] = JenisPenggunaan::all();
-        return view('admin.tabel-jenis', $data);
+        return view('admin.jenis_penggunaan.tabel-jenis', $data);
     }
 
     /**
@@ -21,7 +21,7 @@ class JenisPenggunaanController extends Controller
      */
     public function create()
     {
-        return view('admin.form-jenis');
+        return view('admin.jenis_penggunaan.form-jenis');
     }
 
     /**
@@ -53,7 +53,7 @@ public function store(Request $request)
     public function edit(string $id)
     {
     $data['jenis_penggunaan'] = JenisPenggunaan::findOrFail($id);
-    return view('admin.edit-jenis', $data);
+    return view('admin.jenis_penggunaan.edit-jenis', $data);
     }
 
     /**
