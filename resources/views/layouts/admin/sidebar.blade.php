@@ -141,6 +141,11 @@
                                             <span class="sub-item">Form Jenis Penggunaan</span>
                                         </a>
                                     </li>
+                                    <li class="nav-item {{ request()->routeIs('user.create') ? 'active' : '' }}">
+                                        <a href="{{ route('user.create') }}">
+                                            <span class="sub-item">Form user</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -161,6 +166,11 @@
                                         class="nav-item {{ request()->routeIs('jenis_penggunaan.index') ? 'active' : '' }}">
                                         <a href="{{ route('jenis_penggunaan.index') }}">
                                             <span class="sub-item">Tabel Jenis Penggunaan</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->routeIs('user.index') ? 'active' : '' }}">
+                                        <a href="{{ route('user.index') }}">
+                                            <span class="sub-item">Tabel User</span>
                                         </a>
                                     </li>
                                 </ul>

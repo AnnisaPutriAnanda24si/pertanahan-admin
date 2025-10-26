@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\PersilController;
 use App\Http\Controllers\DashboardController;
@@ -24,3 +25,4 @@ Route::post('auth/registration', [AuthController::class, 'registration'])->name(
 
 Route::resource('warga', WargaController::class);
 Route::resource('jenis_penggunaan', JenisPenggunaanController::class);
+Route::resource('user', UserController::class);
