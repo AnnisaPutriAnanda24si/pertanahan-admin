@@ -3,8 +3,8 @@
                     <nav class="pull-left">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="http://www.themekita.com">
-                                    ThemeKita
+                                <a class="nav-link" href="">
+                                    Pertanahan Admin
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -15,13 +15,13 @@
                             </li>
                         </ul>
                     </nav>
-                    <div class="copyright">
+                    {{-- <div class="copyright">
                         2024, made with <i class="fa fa-heart heart text-danger"></i> by
                         <a href="http://www.themekita.com">ThemeKita</a>
-                    </div>
-                    <div>
+                    </div> --}}
+                    {{-- <div>
                         Distributed by
                         <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
-                    </div>
+                    </div> --}}
                 </div>
             </footer>

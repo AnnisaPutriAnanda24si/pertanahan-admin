@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Datatables - Kaiadmin Bootstrap 5 Admin Dashboard</title>
+    <title>Pertanahan Admin</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="../assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -31,8 +31,8 @@
 
                     {{-- Start Page Header --}}
                     <div class="page-header">
-                        <h3 class="fw-bold mb-3">Data Jenis Penggunaan</h3>
-                        <ul class="breadcrumbs mb-3">
+                        <h3 class="fw-bold mb-3">Pertanahan Admin</h3>
+                        {{-- <ul class="breadcrumbs mb-3">
                             <li class="nav-home">
                                 <a href="#">
                                     <i class="icon-home"></i>
@@ -48,9 +48,9 @@
                                 <i class="icon-arrow-right"></i>
                             </li>
                             <li class="nav-item">
-                                <a href="#">Jenis Penggunaan</a>
+                                <a href="#">#</a>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     {{-- End page header --}}
 
@@ -58,11 +58,17 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    {{-- Judul tabel --}}
-                                    <h4 class="card-title">Tabel Jenis Penggunaan</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                    {{-- Judul tabel --}}
+                    <h4 class="card-title mb-0">Tabel</h4>
+
+                    {{-- Tombol Kembali --}}
+                    <a href="{{ url()->previous() }}" class="btn btn-primary btn-border btn-round">
+                        <i class="fa fa-arrow-left"></i> Kembali
+                    </a>
+                </div>
                                 </div>
                                 @yield('content')
-
                             </div>
                         </div>
                     </div>
@@ -76,6 +82,16 @@
 
         </div>
     </div>
+
+        {{-- Floating WhatsApp Button --}}
+    <a href="https://wa.me/+6285267960839?
+    text=Halo%20Admin,%20saya%20ingin%20bertanya."
+       target="_blank"
+       class="btn btn-success btn-lg rounded-circle shadow position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center"
+       title="Hubungi kami via WhatsApp"
+       style="width: 55px; height: 55px;">
+        <i class="fab fa-whatsapp fs-3"></i>
+    </a>
     {{-- Start JS --}}
     @include('layouts.admin.js')
     {{-- End JS --}}

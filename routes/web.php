@@ -8,12 +8,17 @@ use App\Http\Controllers\PersilController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JenisPenggunaanController;
 
+// Route::get('/', function () {
+//     return route('login');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
-// Route::get('/persil/index', [PersilController::class, 'index'])
-//          ->name('persil.index');
+
+Route::get('/persil/index', [PersilController::class, 'index'])
+         ->name('persil.index');
 
 Route::get('/auth', [AuthController::class, 'login'])->name('login');
 Route::get('/auth/register', [AuthController::class, 'register'])->name('regis');

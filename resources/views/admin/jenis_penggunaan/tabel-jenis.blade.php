@@ -16,7 +16,12 @@
                 {{-- AKHIR BLOK PESAN SUKSES --}}
 
                 <div class="table-responsive">
-                    {{-- ID tabel menggunakan datatable-warga --}}
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="mb-0">Data Jenis Penggunaan</h4>
+                        <a href="{{ route('jenis_penggunaan.create') }}" class="btn btn-primary">
+                            <i class="fa fa-plus"></i> Tambah Data
+                        </a>
+                    </div>
                     <table **id="datatable-admin"** class="display table table-striped table-hover">
                         <thead>
                             <tr>

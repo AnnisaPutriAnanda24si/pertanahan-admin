@@ -32,8 +32,8 @@
                             <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="../../demo1/index.html">
-                                            <span class="sub-item">Dashboard 1</span>
+                                        <a href="{{ route('warga.index') }}">
+                                            <span class="sub-item">Admin</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -43,7 +43,7 @@
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
                             </span>
-                            <h4 class="text-section">Components</h4>
+                            <h4 class="text-section">Fitur</h4>
                         </li>
                         {{-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#base">
@@ -125,7 +125,7 @@
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#forms">
                                 <i class="fas fa-pen-square"></i>
-                                <p>Forms</p>
+                                <p>Form Data</p>
                                 <span class="caret"></span>
                             </a>
                             <div class="collapse" id="forms">
@@ -152,7 +152,7 @@
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#tables">
                                 <i class="fas fa-table"></i>
-                                <p>Tables</p>
+                                <p>Data Master</p>
                                 <span class="caret"></span>
                             </a>
                             <div class="collapse show" id="tables">
@@ -176,7 +176,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#maps">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <p>Maps</p>
@@ -196,8 +196,8 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#charts">
                                 <i class="far fa-chart-bar"></i>
                                 <p>Charts</p>
@@ -217,7 +217,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         {{-- <li class="nav-item">
                             <a href="../widgets.html">
                                 <i class="fas fa-desktop"></i>
@@ -232,7 +232,7 @@
                                 <span class="badge badge-secondary">1</span>
                             </a>
                         </li> --}}
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#submenu">
                                 <i class="fas fa-bars"></i>
                                 <p>Menu Levels</p>
@@ -282,7 +282,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
