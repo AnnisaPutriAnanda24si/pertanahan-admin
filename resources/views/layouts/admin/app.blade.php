@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-            </div>>
+            </div>
             {{-- End Main Content --}}
 
             {{-- Start Footer --}}
