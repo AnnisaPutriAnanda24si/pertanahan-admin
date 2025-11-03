@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $data['user'] = User::all();
-        return view('admin.user.tabel-user', $data);
+        return view('pages.admin.user.tabel-user', $data);
     }
 
     /**
@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.form-user');
+        return view('pages.admin.user.form-user');
     }
 
     /**
@@ -58,7 +58,7 @@ public function store(Request $request)
     public function edit(string $id)
     {
     $data['user'] = User::findOrFail($id);
-    return view('admin.user.edit-user', $data);
+    return view('pages.admin.user.edit-user', $data);
     }
 
     /**
