@@ -13,7 +13,7 @@
                 <div class="table-responsive">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="mb-0">Data Persil</h4>
-                        <a href="{{ route('persil.create') }}" class="btn btn-primary">
+                        <a href="{{ route('warga.index') }}" class="btn btn-primary">
                             <i class="fa fa-plus"></i> Tambah Data
                         </a>
                     </div>
@@ -41,7 +41,14 @@
                                     </td>
                                     <td>{{ $item->luas_m2 }} m²</td>
                                     <td>{{ $item->penggunaan }}</td>
-                                    <td>{{ $item->rt }}/{{ $item->rw }}</td>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="username">{{ $item->alamat_lahan }}</div>
+                                            <div class="status">RT {{ $item->rt }}/RW {{ $item->rw }}</div>
+                                        </div>
+                                    </td>
+
+
                                     <td>
                                         <div class="form-button-action">
                                             <a href="{{ route('persil.edit', $item->persil_id) }}"

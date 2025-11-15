@@ -43,8 +43,7 @@
                                     </td>
                                     <td>
                                         <div class="user-info">
-                                            <div class="username">{{ $item->pekerjaan }}
-                                            </div>
+                                            <div class="username">{{ $item->pekerjaan }}</div>
                                             <div class="status">{{ $item->agama }}</div>
                                         </div>
                                     </td>
@@ -61,10 +60,16 @@
                                     <td>{{ $item->telp }}</td>
                                     <td>
                                         <div class="form-button-action">
+                                            <a href="{{ route('persil.create', ['warga_id' => $item->warga_id]) }}"
+                                                class="btn btn-link btn-primary btn-lg">
+                                                <i class="fa fa-plus-square"></i>
+                                            </a>
+
                                             <a href="{{ route('warga.edit', $item->warga_id) }}" data-bs-toggle="tooltip"
                                                 title="Edit Data" class="btn btn-link btn-primary btn-lg">
                                                 <i class="fa fa-edit"></i>
                                             </a>
+
 
                                             <form action="{{ route('warga.destroy', $item->warga_id) }}"
                                                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus data {{ $item->nama }}?');"
@@ -73,7 +78,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" data-bs-toggle="tooltip" title="Hapus Data"
                                                     class="btn btn-link btn-danger">
-                                                    <i class="fa fa-times"></i>
+                                                    <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
                                         </div>

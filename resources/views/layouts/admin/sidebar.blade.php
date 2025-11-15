@@ -157,6 +157,11 @@
                             </a>
                             <div class="collapse show" id="tables">
                                 <ul class="nav nav-collapse">
+                                    <li class="nav-item {{ request()->routeIs('persil.index') ? 'active' : '' }}">
+                                        <a href="{{ route('persil.index') }}">
+                                            <span class="sub-item">Tabel Persil</span>
+                                        </a>
+                                    </li>
                                     <li class="nav-item {{ request()->routeIs('warga.index') ? 'active' : '' }}">
                                         <a href="{{ route('warga.index') }}">
                                             <span class="sub-item">Tabel Warga</span>

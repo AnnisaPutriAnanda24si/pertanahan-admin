@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Warga;
 use App\Models\Persil;
 use Illuminate\Http\Request;
 
@@ -19,10 +20,23 @@ class PersilController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('pages.admin.persil.form-persil');
+        $warga_id = $request->warga_id; // ambil id dari URL
+        $nama_pemilik = Warga::where('warga_id', $warga_id)->value('nama');
+
+        // dd(        [
+        // 'warga_id' => $warga_id,
+        // 'nama' => $nama_pemilik
+        // ]);
+
+        return view('pages.admin.persil.form-persil',
+        [
+        'warga_id' => $warga_id,
+        'nama' => $nama_pemilik
+        ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -59,7 +73,7 @@ class PersilController extends Controller
     public function edit(string $id)
     {
         $data['persil'] = Persil::findOrFail($id);
-        return view('pages.admin.persil.tabel-persil', $data);
+        return view('pages.admin.persil.edit-persil', $data);
     }
 
     /**
@@ -69,7 +83,7 @@ class PersilController extends Controller
     {
         $persil = Persil::findOrFail($id);
         $data = $request->validate([
-            'kode_persil' => ['required','string','unique:persil,kode_persil' . $id . ',' . ',persil_id'],
+            'kode_persil' => ['required','string','unique:persil,kode_persil,' . $id . ',persil_id'],
             'pemilik_warga_id' => ['required','exists:warga,warga_id'],
             'luas_m2' => 'required|integer',
             'penggunaan' => 'required|string|max:100',
