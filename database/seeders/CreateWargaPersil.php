@@ -15,7 +15,7 @@ class CreateWargaPersil extends Seeder
     public function run()
     {
          $warga = Warga::create([
-            'no_ktp' => '1234567890123456',
+            'no_ktp' => '654321654321',
             'nama' => 'Nurtanio Luqman',
             'jenis_kelamin' => 'Male',
             'agama' => 'Islam',
