@@ -42,7 +42,7 @@
                 pageLength: 10,
                 columnDefs: [{
                         orderable: false,
-                        targets: 4
+                        targets: 3
                     } // Nonaktifkan sorting di kolom "Aksi"
                 ],
             });

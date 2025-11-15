@@ -20,8 +20,8 @@ Route::get('/', function () {
 Route::get('/persil/index', [PersilController::class, 'index'])
          ->name('persil.index');
 
-Route::get('/auth', [AuthController::class, 'login'])->name('login');
-Route::get('/auth/register', [AuthController::class, 'register'])->name('regis');
+Route::get('auth', [AuthController::class, 'login'])->name('login');
+Route::get('auth/register', [AuthController::class, 'register'])->name('regis');
 Route::post('auth/authentication', [AuthController::class, 'authentication'])->name('login.auth');
 Route::post('auth/registration', [AuthController::class, 'registration'])->name('regis.regis');
 
@@ -31,3 +31,4 @@ Route::post('auth/registration', [AuthController::class, 'registration'])->name(
 Route::resource('warga', WargaController::class);
 Route::resource('jenis_penggunaan', JenisPenggunaanController::class);
 Route::resource('user', UserController::class);
+Route::resource('persil', PersilController::class);

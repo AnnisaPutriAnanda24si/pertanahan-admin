@@ -22,7 +22,7 @@
                             <i class="fa fa-plus"></i> Tambah Data
                         </a>
                     </div>
-                    <table **id="datatable-admin"** class="display table table-striped table-hover">
+                    <table id="datatable-admin" class="display table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>ID</th>

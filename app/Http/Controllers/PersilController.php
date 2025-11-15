@@ -12,7 +12,7 @@ class PersilController extends Controller
      */
     public function index()
     {
-        $data['persil'] = Persil::all();
+        $data['persil'] = Persil::with('warga')->get(); //pakai relasi dari yg ada di model
         return view('pages.admin.persil.tabel-persil', $data);
     }
 
