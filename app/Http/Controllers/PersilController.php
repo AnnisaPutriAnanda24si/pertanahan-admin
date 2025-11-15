@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persil;
 use Illuminate\Http\Request;
 
 class PersilController extends Controller
@@ -11,17 +12,8 @@ class PersilController extends Controller
      */
     public function index()
     {
-    //menggunakan data dari tabel persil
-    $persil = [
-        'kode_persil' => 'PRS-001',
-        'pemilik' => 'Nurtanio', //tidak menggunakan pemilik_warga_id
-        'luas_m2' => 250,
-        'penggunaan' => 'Perumahan',
-        'alamat_lahan' => 'Jl. Melati No.10',
-        'rt' => '02',
-        'rw' => '05'
-    ];
-    return view('home', $persil);
+        $data['persil'] = Persil::all();
+        return view('pages.admin.persil.tabel-persil', $data);
     }
 
     /**
@@ -29,7 +21,7 @@ class PersilController extends Controller
      */
     public function create()
     {
-        // komen kedua
+        return view('pages.admin.persil.form-persil');
     }
 
     /**
@@ -37,12 +29,25 @@ class PersilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'kode_persil' => 'required|string|unique:persil,kode_persil',
+            'pemilik_warga_id' => 'required|exists:warga,warga_id',
+            'luas_m2' => 'required|integer',
+            'penggunaan' => 'required|string|max:100',
+            'alamat_lahan' => 'required|string|max:200',
+            'rt' => 'required|max:5',
+            'rw' => 'required|max:5',
+        ]);
+
+        Persil::create($data);
+
+    // return redirect()->route('warga.index')->with('success','Penambahan Data Berhasil!');
     }
 
     /**
      * Display the specified resource.
      */
+
     public function show(string $id)
     {
         //
@@ -53,7 +58,8 @@ class PersilController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['persil'] = Persil::findOrFail($id);
+        return view('pages.admin.persil.tabel-persil', $data);
     }
 
     /**
@@ -61,7 +67,21 @@ class PersilController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $persil = Persil::findOrFail($id);
+        $data = $request->validate([
+            'kode_persil' => ['required','string','unique:persil,kode_persil' . $id . ',' . ',persil_id'],
+            'pemilik_warga_id' => ['required','exists:warga,warga_id'],
+            'luas_m2' => 'required|integer',
+            'penggunaan' => 'required|string|max:100',
+            'alamat_lahan' => 'required|string|max:200',
+            'rt' => 'required|max:5',
+            'rw' => 'required|max:5',
+        ]);
+
+        $persil->fill($data);
+        $persil->save();
+
+        // return redirect()->route('warga.index')->with('success', 'Perubahan Data Warga Berhasil!');
     }
 
     /**
@@ -69,6 +89,8 @@ class PersilController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Persil::findOrFail($id);
+        $data->delete();
+        // return redirect()->route('warga.index')->with('success', 'Data berhasil dihapus');
     }
 }
