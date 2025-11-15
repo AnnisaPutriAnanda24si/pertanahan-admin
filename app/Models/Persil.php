@@ -20,7 +20,7 @@ class Persil extends Model
 
     public function warga()
     {
-        return $this->belongsTo(Warga::class, 'pemilik_warga_id', 'warga_id'); //buat controller
+        return $this->belongsTo(Warga::class, 'pemilik_warga_id', 'warga_id'); //setiap data persil dimiliki oleh satu warga
     }
 
 }

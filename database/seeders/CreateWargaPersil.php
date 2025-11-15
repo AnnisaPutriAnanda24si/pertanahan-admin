@@ -9,9 +9,11 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CreateWargaPersil extends Seeder
 {
+
     /**
      * Run the database seeds.
      */
+
     public function run()
     {
          $warga = Warga::create([

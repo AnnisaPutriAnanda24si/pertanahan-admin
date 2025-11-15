@@ -13,7 +13,7 @@ class PersilController extends Controller
      */
     public function index()
     {
-        $data['persil'] = Persil::with('warga')->get(); //pakai relasi dari yg ada di model
+        $data['persil'] = Persil::with('warga')->get(); //join
         return view('pages.admin.persil.tabel-persil', $data);
     }
 
@@ -22,7 +22,7 @@ class PersilController extends Controller
      */
     public function create(Request $request)
     {
-        $warga_id = $request->warga_id; // ambil id dari URL
+        $warga_id = $request->warga_id; //ambil id dari URL
         $nama_pemilik = Warga::where('warga_id', $warga_id)->value('nama');
 
         // dd(        [
@@ -55,7 +55,7 @@ class PersilController extends Controller
 
         Persil::create($data);
 
-    // return redirect()->route('warga.index')->with('success','Penambahan Data Berhasil!');
+    return redirect()->route('persil.index')->with('success','Penambahan Data Berhasil!');
     }
 
     /**
@@ -95,7 +95,7 @@ class PersilController extends Controller
         $persil->fill($data);
         $persil->save();
 
-        // return redirect()->route('warga.index')->with('success', 'Perubahan Data Warga Berhasil!');
+        return redirect()->route('persil.index')->with('success', 'Perubahan Data Persil Berhasil!');
     }
 
     /**
@@ -105,6 +105,6 @@ class PersilController extends Controller
     {
         $data = Persil::findOrFail($id);
         $data->delete();
-        // return redirect()->route('warga.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('persil.index')->with('success', 'Data berhasil dihapus');
     }
 }

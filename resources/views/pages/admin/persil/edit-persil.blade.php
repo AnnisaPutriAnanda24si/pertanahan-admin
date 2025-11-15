@@ -22,8 +22,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="pemilik_warga">Pemilik</label>
-                        <input type="text" class="form-control" value="{{ $persil->warga->nama ?? 'Tidak ada pemilik' }}"
-                            disabled>
+                        <input type="text" class="form-control" value="{{ $persil->warga->nama }}" disabled>
                         <input type="hidden" name="pemilik_warga_id" value="{{ $persil->pemilik_warga_id }}">
                     </div>
                 </div>

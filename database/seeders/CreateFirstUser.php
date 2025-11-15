@@ -9,9 +9,11 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CreateFirstUser extends Seeder
 {
+
     /**
      * Run the database seeds.
      */
+
     public function run()
     {
          User::create([
