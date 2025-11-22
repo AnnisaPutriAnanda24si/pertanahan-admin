@@ -11,9 +11,23 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['user'] = User::all();
+        $query = User::query();
+        if ($request->verified == 'verified') {
+            $query->whereNotNull('email_verified_at');
+        }
+        if ($request->verified == 'unverified') {
+            $query->whereNull('email_verified_at');
+        }
+
+        $filterableColumns = ['email_verified_at'];
+        $searchableColumns = ['name', 'email'];
+        $data['user'] = $query
+                ->filter($request, $filterableColumns, $searchableColumns)
+                ->search($request, $searchableColumns)
+                ->paginate(10)
+                ->withQueryString();
         return view('pages.admin.user.tabel-user', $data);
     }
 

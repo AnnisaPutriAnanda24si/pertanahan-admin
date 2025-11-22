@@ -21,5 +21,6 @@ class CreateFirstUser extends Seeder
             'email' => 'admin@example.com',
             'password' => Hash::make('password123'),
         ]);
+
     }
 }

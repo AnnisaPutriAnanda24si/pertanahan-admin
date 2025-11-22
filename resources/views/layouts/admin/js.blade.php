@@ -41,10 +41,9 @@
             $('#datatable-admin').DataTable({
                 pageLength: 10,
                 columnDefs: [{
-                        orderable: false,
-                        targets: 3
-                    } // Nonaktifkan sorting di kolom "Aksi"
-                ],
+                    orderable: false,
+                    targets: 3
+                }],
             });
             // AKHIR KODE TAMBAHAN
 

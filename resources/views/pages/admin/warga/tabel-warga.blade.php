@@ -21,7 +21,36 @@
                             <i class="fa fa-plus"></i> Tambah Data
                         </a>
                     </div>
-                    <table id="datatable-admin" class="display table table-striped table-hover">
+                    <form method="GET" action="{{ route('warga.index') }}" class="mb-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <select name="jenis_kelamin" class="form-select" onchange="this.form.submit()">
+                                    <option value="">All</option>
+                                    @foreach ($filter as $item)
+                                        <option value='{{ $item->jenis_kelamin }}'
+                                            {{ request('jenis_kelamin') == $item->jenis_kelamin ? 'selected' : '' }}>
+                                            {{ $item->jenis_kelamin }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" id="exampleInputIconRight"
+                                        value="{{ request('search') }}" placeholder="Search" aria-label="Search">
+                                    <button type="submit" class="input-group-text" id="basic-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    @if (request('search'))
+                                        <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
+                                            class="btn btn-outline-secondary ml-3" id="clear-search"> Clear</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{-- <table id="datatable-admin" class="display table table-striped table-hover"> --}}
+                    <table class="display table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>Nama</th>
@@ -61,6 +90,7 @@
                                     <td>
                                         <div class="form-button-action">
                                             <a href="{{ route('persil.create', ['warga_id' => $item->warga_id]) }}"
+                                                data-bs-toggle="tooltip" title="Tambah Data Persil"
                                                 class="btn btn-link btn-primary btn-lg">
                                                 <i class="fa fa-plus-square"></i>
                                             </a>
@@ -87,6 +117,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-3">
+                        {{ $warga->links('pagination::bootstrap-5') }}
+                    </div>
+
                 </div>
             </div>
         </div>

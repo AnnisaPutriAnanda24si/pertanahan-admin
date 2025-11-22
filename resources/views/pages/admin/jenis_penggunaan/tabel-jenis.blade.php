@@ -22,10 +22,39 @@
                             <i class="fa fa-plus"></i> Tambah Data
                         </a>
                     </div>
-                    <table id="datatable-admin" class="display table table-striped table-hover">
+                    <form method="GET" action="{{ route('jenis_penggunaan.index') }}" class="mb-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <select name="nama_penggunaan" class="form-select" onchange="this.form.submit()">
+                                    <option value="">All</option>
+                                    @foreach ($filter as $item)
+                                        <option value='{{ $item->nama_penggunaan }}'
+                                            {{ request('nama_penggunaan') == $item->nama_penggunaan ? 'selected' : '' }}>
+                                            {{ $item->nama_penggunaan }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" id="exampleInputIconRight"
+                                        value="{{ request('search') }}" placeholder="Search" aria-label="Search">
+                                    <button type="submit" class="input-group-text" id="basic-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    @if (request('search'))
+                                        <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
+                                            class="btn btn-outline-secondary ml-3" id="clear-search"> Clear</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{-- <table id="datatable-admin" class="display table table-striped table-hover"> --}}
+                    <table class="display table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>NO</th>
                                 <th>Nama Penggunaan</th>
                                 <th>Keterangan</th>
                                 <th style="width: 10%">Aksi</th>
@@ -64,17 +93,11 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        {{-- !!! WAJIB: FOOTER UNTUK MULTI-FILTER !!! --}}
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nama Penggunaan</th>
-                                <th>Keterangan</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
-                        {{-- AKHIR <tfoot> --}}
                     </table>
+                    <div class="mt-3">
+                        {{ $jenis_penggunaan->links('pagination::bootstrap-5') }}
+                    </div>
+
                 </div>
             </div>
         </div>

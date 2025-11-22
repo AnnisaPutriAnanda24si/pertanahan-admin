@@ -10,9 +10,15 @@ class JenisPenggunaanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['jenis_penggunaan'] = JenisPenggunaan::all();
+        $data['filter'] = JenisPenggunaan::select('nama_penggunaan')->distinct()->get();
+        $filterableColumns = ['nama_penggunaan'];
+        $searchableColumns = ['nama_penggunaan', 'keterangan'];
+        $data['jenis_penggunaan'] = JenisPenggunaan::filter($request, $filterableColumns, $searchableColumns)
+                    ->search($request, $searchableColumns)
+					->paginate(10)
+					->withQueryString();
         return view('pages.admin.jenis_penggunaan.tabel-jenis', $data);
     }
 

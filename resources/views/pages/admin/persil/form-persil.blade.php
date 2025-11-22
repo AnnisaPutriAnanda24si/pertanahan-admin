@@ -29,8 +29,6 @@
                         <label for="pemilik_warga_id">Pemilik Warga</label>
                         <!-- Tampilkan nama pemilik sebagai teks -->
                         <input type="text" class="form-control" value="{{ $nama }}" disabled>
-
-
                         <!-- Hidden input untuk menyimpan ID -->
                         <input type="hidden" name="pemilik_warga_id" value="{{ $warga_id }}">
                     </div>

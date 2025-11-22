@@ -17,7 +17,36 @@
                             <i class="fa fa-plus"></i> Tambah Data
                         </a>
                     </div>
-                    <table id="datatable-admin" class="display table table-striped table-hover">
+                    <form method="GET" action="{{ route('persil.index') }}" class="mb-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <select name="penggunaan" class="form-select" onchange="this.form.submit()">
+                                    <option value="">All</option>
+                                    @foreach ($filter as $item)
+                                        <option value='{{ $item->penggunaan }}'
+                                            {{ request('penggunaan') == $item->penggunaan ? 'selected' : '' }}>
+                                            {{ $item->penggunaan }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" id="exampleInputIconRight"
+                                        value="{{ request('search') }}" placeholder="Search" aria-label="Search">
+                                    <button type="submit" class="input-group-text" id="basic-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    @if (request('search'))
+                                        <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
+                                            class="btn btn-outline-secondary ml-3" id="clear-search"> Clear</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{-- <table id="datatable-admin" class="display table table-striped table-hover"> --}}
+                    <table class="display table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>Kode Persil / Nama Pemilik</th>
@@ -71,6 +100,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-3">
+                        {{ $persil->links('pagination::bootstrap-5') }}
+                    </div>
+
                 </div>
             </div>
         </div>

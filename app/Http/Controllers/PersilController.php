@@ -11,9 +11,16 @@ class PersilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['persil'] = Persil::with('warga')->get(); //join
+        $data['filter'] = Persil::select('penggunaan')->distinct()->get();
+        $filterableColumns = ['penggunaan'];
+        $searchableColumns = ['penggunaan', 'kode_persil', 'luas_m2'];
+        $data['persil'] = Persil::with('warga')
+                    ->filter($request, $filterableColumns, $searchableColumns)
+                    ->search($request, $searchableColumns)
+					->paginate(10)
+					->withQueryString(); //join
         return view('pages.admin.persil.tabel-persil', $data);
     }
 

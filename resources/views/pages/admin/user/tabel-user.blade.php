@@ -20,12 +20,38 @@
                             <i class="fa fa-plus"></i> Tambah Data
                         </a>
                     </div>
+                    <form method="GET" action="{{ route('user.index') }}" class="mb-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <select name="verified" class="form-select" onchange="this.form.submit()">
+                                    <option value="">All</option>
+                                    <option value="verified" {{ request('verified') == 'verified' ? 'selected' : '' }}>
+                                        Verified</option>
+                                    <option value="unverified" {{ request('verified') == 'unverified' ? 'selected' : '' }}>
+                                        Unverified</option>
+                                </select>
 
-                    <table id="datatable-admin" class="display table table-striped table-hover">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" id="exampleInputIconRight"
+                                        value="{{ request('search') }}" placeholder="Search" aria-label="Search">
+                                    <button type="submit" class="input-group-text" id="basic-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    @if (request('search'))
+                                        <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
+                                            class="btn btn-outline-secondary ml-3" id="clear-search"> Clear</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{-- <table id="datatable-admin" class="display table table-striped table-hover"> --}}
+                    <table class="display table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>Nama / Email</th>
-                                <th>Role</th>
                                 <th>Status</th>
                                 <th style="width: 10%">Aksi</th>
                             </tr>
@@ -41,15 +67,15 @@
                                         </div>
                                     </td>
 
-                                    <td>{{ $item->role ?? '-' }}</td>
 
                                     <td>
-                                        @if ($item->status == 1)
-                                            <span class="badge bg-success">Aktif</span>
+                                        @if ($item->email_verified_at)
+                                            <span class="badge bg-success">Verified</span>
                                         @else
-                                            <span class="badge bg-secondary">Nonaktif</span>
+                                            <span class="badge bg-secondary">Unverified</span>
                                         @endif
                                     </td>
+
 
                                     <td>
                                         <div class="form-button-action">
@@ -74,6 +100,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-3">
+                        {{ $user->links('pagination::bootstrap-5') }}
+                    </div>
+
                 </div>
             </div>
         </div>
