@@ -13,6 +13,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
         $query = User::query();
         if ($request->verified == 'verified') {
             $query->whereNotNull('email_verified_at');
@@ -21,7 +22,7 @@ class UserController extends Controller
             $query->whereNull('email_verified_at');
         }
 
-        $filterableColumns = ['email_verified_at'];
+        $filterableColumns = ['role'];
         $searchableColumns = ['name', 'email'];
         $data['user'] = $query
                 ->filter($request, $filterableColumns, $searchableColumns)
@@ -47,6 +48,7 @@ public function store(Request $request)
     $data = $request->validate([
         'name' => 'required|string|max:100',
         'email' => 'required|string|unique:users,email',
+        'role' => 'required',
         'password' => 'required|confirmed',
         'password_confirmation' => 'required'
     ]);
@@ -84,6 +86,7 @@ public function store(Request $request)
 
     $data = $request->validate([
         'name' => ['required','string','max:255'],
+        'role' => 'required',
         'email' => ['required', 'string','unique:users,email,' . $id . ',' . 'id'],
         'password' => 'required'
     ]);

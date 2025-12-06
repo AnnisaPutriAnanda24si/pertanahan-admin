@@ -28,6 +28,16 @@
                 @enderror
             </div>
 
+            {{-- Role --}}
+            <div class="form-group">
+                <select name="role" id="role" class="form-select" value="{{ old('role') }}">
+                    <option value="" disabled>Any</option>
+                    <option value="Client">Client</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Super Admin">Super Admin</option>
+                </select>
+            </div>
+
             {{-- Password --}}
             <div class="form-group">
                 <label for="password">Password</label>
