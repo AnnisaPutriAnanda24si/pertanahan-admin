@@ -178,6 +178,11 @@
                                             <span class="sub-item">Tabel User</span>
                                         </a>
                                     </li>
+                                    <li class="nav-item {{ request()->routeIs('media.index') ? 'active' : '' }}">
+                                        <a href="{{ route('media.index') }}">
+                                            <span class="sub-item">Tabel Media</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

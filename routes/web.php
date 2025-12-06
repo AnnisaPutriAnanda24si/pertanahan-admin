@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\PersilController;
 use App\Http\Controllers\DashboardController;
@@ -32,5 +33,6 @@ Route::resource('warga', WargaController::class);
 Route::resource('jenis_penggunaan', JenisPenggunaanController::class);
 Route::resource('user', UserController::class);
 Route::resource('persil', PersilController::class);
+Route::resource('media', MediaController::class);
 Route::delete('/persil/media/{media}', [PersilController::class, 'deleteMedia'])
      ->name('persil.media.delete');
