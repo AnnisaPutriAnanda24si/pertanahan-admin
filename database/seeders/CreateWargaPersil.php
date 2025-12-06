@@ -46,14 +46,14 @@ class CreateWargaPersil extends Seeder
             $warga = Warga::create([
                 'no_ktp' => $faker->numerify('################'),
                 'nama' => $faker->name(),
-                'jenis_kelamin' => $faker->randomElement(['Male', 'Female']),
+                'jenis_kelamin' => $faker->randomElement(['Male', 'Female', 'Others']),
                 'agama' => $faker->randomElement(['Islam', 'Kristen', 'Hindu', 'Budha', 'Konghucu']),
                 'pekerjaan' => $faker->jobTitle(),
                 'email' => $faker->unique()->safeEmail(),
                 'telp' => $faker->numerify('08##########')
             ]);
 
-            $persilCount = rand(0, 4);
+            $persilCount = rand(0, 4); 
 
             for ($j = 0; $j < $persilCount; $j++) {
                 Persil::create([

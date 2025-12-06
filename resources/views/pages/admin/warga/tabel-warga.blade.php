@@ -24,6 +24,7 @@
                     <form method="GET" action="{{ route('warga.index') }}" class="mb-3">
                         <div class="row">
                             <div class="col-md-3">
+
                                 <select name="jenis_kelamin" class="form-select" onchange="this.form.submit()">
                                     <option value="">All</option>
                                     @foreach ($filter as $item)
@@ -33,6 +34,7 @@
                                         </option>
                                     @endforeach
                                 </select>
+
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group">
