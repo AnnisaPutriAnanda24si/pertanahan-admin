@@ -49,6 +49,7 @@
                     <table class="display table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
+                                <th>Media</th>
                                 <th>Kode Persil / Nama Pemilik</th>
                                 <th>Luas (m²)</th>
                                 <th>Penggunaan</th>
@@ -60,6 +61,12 @@
                         <tbody>
                             @foreach ($persil as $item)
                                 <tr>
+                                    <td>
+                                        <a href="{{ route('persil.show', $item->persil_id) }}"
+                                            class="btn btn-sm btn-secondary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
                                     <td>
                                         <div class="user-info">
                                             <div class="username">{{ $item->kode_persil }}</div>
