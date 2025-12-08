@@ -4,9 +4,18 @@
     {{-- Start Main Content --}}
     {{-- form --}}
     <div class="card-body">
-        <form action="{{ route('user.update', $user->id) }}" method="POST">
+        <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+
+            <div class="form-group">
+                <input type="file" id="profile_picture" name="profile_picture"
+                    class="form-control @error('profile_picture') is-invalid @enderror" accept="image/*">
+                <small class="text-muted">Format: JPG, PNG (Max: 2MB)</small>
+                @error('profile_picture')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
             <!-- Nama Penggunaan -->
             <div class="form-group">
@@ -16,6 +25,15 @@
                 @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+            </div>
+
+            <div class="form-group">
+                <select name="role" id="role" class="form-select" value="{{ old('role', $user->role) }}">
+                    <option value="" disabled>Any</option>
+                    <option value="Client">Client</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Super Admin">Super Admin</option>
+                </select>
             </div>
 
             <!-- Keterangan -->
@@ -29,9 +47,11 @@
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" value="{{ old('password', $user->password) }}"
-                    placeholder="Masukkan nama penggunaan" class="form-control @error('password') is-invalid @enderror">
+                <label for="password">Password Baru</label>
+                <input type="password" id="password" name="password"
+                    placeholder="Kosongkan jika tidak ingin mengganti password"
+                    class="form-control @error('password') is-invalid @enderror">
+                <small class="text-muted">Kosongkan jika tidak ingin mengganti password</small>
                 @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

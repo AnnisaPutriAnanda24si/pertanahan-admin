@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -19,15 +20,18 @@ class AuthController extends Controller
 
     public function authentication(Request $request)
     {
+
         $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8']
+            'password' => ['required', 'min:5']
         ]);
 
         $user = User::where('email', $request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            return redirect()->route('warga.index')->with('success', 'Selamat datang kembali!');
+            Auth::login($user);
+            session(['last_login' => now()]);
+            return redirect()->route('jenis_penggunaan.index')->with('success', 'Selamat datang kembali!');
         }else{
             redirect()->back()->with('error', 'Password atau Email salah!');
         }
@@ -38,7 +42,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8', 'confirmed'],
+            'password' => ['required', 'min:5', 'confirmed'],
             'password_confirmation' => ['required']
         ]);
 
@@ -50,6 +54,13 @@ class AuthController extends Controller
         User::create($data);
 
         return redirect()->route('login')->with('success', 'Registrasi Berhasil!');
+    }
+    function logout(Request $request)
+    {
+	Auth::logout();
+    $request->session()->invalidate();     // Hapus semua session
+    $request->session()->regenerateToken(); // Cegah CSRF
+    return redirect()->route('login');
     }
 
 }

@@ -23,12 +23,14 @@
                     <form method="GET" action="{{ route('user.index') }}" class="mb-3">
                         <div class="row">
                             <div class="col-md-3">
-                                <select name="verified" class="form-select" onchange="this.form.submit()">
+                                <select name="role" class="form-select" onchange="this.form.submit()">
                                     <option value="">All</option>
-                                    <option value="verified" {{ request('verified') == 'verified' ? 'selected' : '' }}>
-                                        Verified</option>
-                                    <option value="unverified" {{ request('verified') == 'unverified' ? 'selected' : '' }}>
-                                        Unverified</option>
+                                    <option value="Admin" {{ request('role') == 'Admin' ? 'selected' : '' }}>
+                                        Admin</option>
+                                    <option value="Super Admin" {{ request('role') == 'Super Admin' ? 'selected' : '' }}>
+                                        Super Admin</option>
+                                    <option value="Client" {{ request('role') == 'Client' ? 'selected' : '' }}>
+                                        Client</option>
                                 </select>
 
                             </div>
@@ -51,8 +53,9 @@
                     <table class="display table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
+                                <th>Foto Profil</th>
                                 <th>Nama / Email</th>
-                                <th>Status</th>
+                                <th>Role</th>
                                 <th style="width: 10%">Aksi</th>
                             </tr>
                         </thead>
@@ -60,6 +63,14 @@
                         <tbody>
                             @foreach ($user as $item)
                                 <tr>
+                                    <td>
+                                        @if ($item->profile_picture)
+                                            <img src="{{ Storage::url($item->profile_picture) }}" alt="Foto"
+                                                style="width: 40px; height: 40px; object-fit: cover;">
+                                        @else
+                                            <i class="fas fa-user"></i>
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="user-info">
                                             <div class="username">{{ $item->name }}</div>
@@ -69,10 +80,15 @@
 
 
                                     <td>
-                                        @if ($item->email_verified_at)
-                                            <span class="badge bg-success">Verified</span>
+                                        @if ($item->role == 'Super Admin')
+                                            <span class="badge bg-danger">{{ $item->role }}</span>
+                                        @elseif ($item->role == 'Admin')
+                                            <span class="badge bg-success">{{ $item->role }}</span>
+                                        @elseif ($item->role == 'Client')
+                                            <span class="badge bg-primary">{{ $item->role }}</span>
                                         @else
-                                            <span class="badge bg-secondary">Unverified</span>
+                                            <span class="badge bg-secondary">{{ $item->role }}</span>
+                                            {{-- warna default untuk role lain --}}
                                         @endif
                                     </td>
 

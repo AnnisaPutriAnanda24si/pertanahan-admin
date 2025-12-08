@@ -80,27 +80,54 @@ public function store(Request $request)
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+public function update(Request $request, $id)
 {
-    $jenis = User::findOrFail($id);
+    // Debug: Cek apa yang terjadi
+    \Log::info('=== UPDATE USER DEBUG ===');
+    \Log::info('Request Data:', $request->all());
+    \Log::info('User ID: ' . $id);
 
-    $data = $request->validate([
-        'name' => ['required','string','max:255'],
-        'role' => 'required',
-        'email' => ['required', 'string','unique:users,email,' . $id . ',' . 'id'],
-        'password' => 'required'
-    ]);
+    try {
+        $user = User::findOrFail($id);
 
-    $data['password'] = Hash::make($data['password']);
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'role' => 'required|string',
+            'password' => 'nullable|string|min:6',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ]);
 
-    // $jenis->name = $request->name;
-    // $jenis->email = $request->email;
+        \Log::info('Validated Data:', $validated);
 
-    $jenis->fill($data);
-    $jenis->save();
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->role = $validated['role'];
 
-    return redirect()->route('user.index')->with('success', 'Perubahan Data User Berhasil!');
+        if (!empty($validated['password'])) {
+            $user->password = Hash::make($validated['password']);
+        }
+
+        if ($request->hasFile('profile_picture')) {
+            if ($user->profile_picture) {
+                Storage::disk('public')->delete($user->profile_picture);
+            }
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $user->profile_picture = $path;
+        }
+
+        $user->save();
+
+        \Log::info('User updated successfully');
+
+        return redirect()->route('user.index')->with('success', 'Perubahan Data Berhasil!');
+
+    } catch (\Exception $e) {
+        \Log::error('Update Error: ' . $e->getMessage());
+        return back()->with('error', 'Error: ' . $e->getMessage());
+    }
 }
+
 
     /**
      * Remove the specified resource from storage.

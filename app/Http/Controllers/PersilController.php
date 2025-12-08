@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use App\Models\Warga;
 use App\Models\Persil;
-use App\Models\Media;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PersilController extends Controller
@@ -15,6 +16,7 @@ class PersilController extends Controller
      */
     public function index(Request $request)
     {
+        if (Auth::check()) {
         $data['filter'] = Persil::select('penggunaan')->distinct()->get();
         $filterableColumns = ['penggunaan'];
         $searchableColumns = ['penggunaan', 'kode_persil', 'luas_m2'];
@@ -24,6 +26,7 @@ class PersilController extends Controller
 					->paginate(10)
 					->withQueryString(); //join
         return view('pages.admin.persil.tabel-persil', $data);
+        }
     }
 
     /**
@@ -66,7 +69,7 @@ class PersilController extends Controller
         // Validasi file (jika ada)
         if ($request->hasFile('media_files')) {
             $request->validate([
-                'media_files.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,xls|max:2048',
+                'media_files.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,xls,geojson,json|max:2048',
                 'media_captions.*' => 'nullable|string|max:255',
             ]);
         }
@@ -163,7 +166,7 @@ class PersilController extends Controller
         // Simpan file baru jika ada (edit mode)
         if ($request->hasFile('media_files')) {
             $request->validate([
-                'media_files.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,xls|max:2048',
+                'media_files.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,xls,geojson,json|max:2048',
                 'media_captions.*' => 'nullable|string|max:255',
             ]);
 
