@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dokumen_persil', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        $table->id('dokumen_id');
+        $table->unsignedBigInteger('persil_id');
+        $table->foreign('persil_id')
+          ->references('persil_id')
+          ->on('persil')
+          ->onDelete('restrict');
+        $table->integer('nomor');
+        $table->string('jenis_dokumen');
+        $table->text('keterangan');
+        $table->timestamps();
         });
     }
 
