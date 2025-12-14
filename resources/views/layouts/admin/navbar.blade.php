@@ -2,8 +2,15 @@
                     <div class="container-fluid">
                         <nav
                             class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-                            <img src="https://www.henkel-gcc.com/resource/image/32556/1x1/1000/1000/64143212d44e70e6c927885764745c24/30FAE5974EBEDC298CD595B173662700/persil-logo.webp"
-                                alt="navbar brand" class="navbar-brand" height="80" />
+                            {{-- <img src="https://www.henkel-gcc.com/resource/image/32556/1x1/1000/1000/64143212d44e70e6c927885764745c24/30FAE5974EBEDC298CD595B173662700/persil-logo.webp"
+                                alt="navbar brand" class="navbar-brand" height="80" /> --}}
+                            <div class="me-3">
+                                <img src="{{ Storage::url('placeholders/logo.svg') }}" alt="Logo Bina Desa"
+                                    class="navbar-brand" height="50" />
+                            </div>
+                            <div class="d-none d-md-block">
+                                <h5 class="fw-bold mb-0">BINA DESA</h5>
+                            </div>
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button type="submit" class="btn btn-search pe-1">
@@ -23,10 +30,8 @@
                                             <img src="{{ Storage::url(Auth::user()->profile_picture) }}" alt="..."
                                                 class="avatar-img rounded-circle" />
                                         @else
-                                            <div
-                                                class="avatar-img rounded-circle bg-secondary d-flex align-items-center justify-content-center">
-                                                <i class="fas fa-user text-white"></i>
-                                            </div>
+                                            <img src="{{ Storage::url('placeholders/PlaceholderProfile.png') }}"
+                                                alt="..." class="avatar-img rounded-circle" />
                                         @endif
 
                                     </div>
@@ -44,10 +49,8 @@
                                                         <img src="{{ Storage::url(Auth::user()->profile_picture) }}"
                                                             alt="image profile" class="avatar-img rounded" />
                                                     @else
-                                                        <div
-                                                            class="avatar-img rounded bg-secondary d-flex align-items-center justify-content-center">
-                                                            <i class="fas fa-user text-white"></i>
-                                                        </div>
+                                                        <img src="{{ Storage::url('placeholders/PlaceholderProfile.png') }}"
+                                                            alt="image profile" class="avatar-img rounded" />
                                                     @endif
                                                 </div>
                                                 <div class="u-text">

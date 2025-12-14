@@ -37,35 +37,68 @@ class CreateWargaPersil extends Seeder
     //         'rw' => '02',
     //     ]);
     // }
+
+    // public function run()
+    // {
+    //     $faker = Faker::create('id_ID');
+
+    //     for ($i = 0; $i < 150; $i++) {
+
+    //         $warga = Warga::create([
+    //             'no_ktp' => $faker->numerify('################'),
+    //             'nama' => $faker->name(),
+    //             'jenis_kelamin' => $faker->randomElement(['Male', 'Female', 'Others']),
+    //             'agama' => $faker->randomElement(['Islam', 'Kristen', 'Hindu', 'Budha', 'Konghucu']),
+    //             'pekerjaan' => $faker->jobTitle(),
+    //             'email' => $faker->unique()->safeEmail(),
+    //             'telp' => $faker->numerify('08##########')
+    //         ]);
+
+    //         $persilCount = rand(0, 4);
+
+    //         for ($j = 0; $j < $persilCount; $j++) {
+    //             Persil::create([
+    //                 'kode_persil' => $faker->unique()->bothify('????'),
+    //                 'pemilik_warga_id' => $warga->warga_id,
+    //                 'luas_m2' => $faker->numberBetween(50, 1000),
+    //                 'penggunaan' => $faker->randomElement(['Perumahan', 'Pertanian', 'Perdagangan', 'Peternakkan']),
+    //                 'alamat_lahan' => $faker->address(),
+    //                 'rt' => $faker->numberBetween(1, 20),
+    //                 'rw' => $faker->numberBetween(1, 20)
+    //             ]);
+    //         }
+    //     }
+    // }
+
     public function run()
-    {
-        $faker = Faker::create('id_ID');
+{
+    $faker = Faker::create('id_ID');
 
-        for ($i = 0; $i < 150; $i++) {
+    for ($i = 0; $i < 150; $i++) {
+        $name = $faker->unique()->name();
+        $email = strtolower(str_replace(' ', '', $name)) . '@example.com';
 
-            $warga = Warga::create([
-                'no_ktp' => $faker->numerify('################'),
-                'nama' => $faker->name(),
-                'jenis_kelamin' => $faker->randomElement(['Male', 'Female', 'Others']),
-                'agama' => $faker->randomElement(['Islam', 'Kristen', 'Hindu', 'Budha', 'Konghucu']),
-                'pekerjaan' => $faker->jobTitle(),
-                'email' => $faker->unique()->safeEmail(),
-                'telp' => $faker->numerify('08##########')
+        $warga = Warga::create([
+            'no_ktp' => $faker->numerify('################'),
+            'nama' => $name,
+            'jenis_kelamin' => $faker->randomElement(['Male', 'Female']),
+            'agama' => $faker->randomElement(['Islam', 'Kristen', 'Protestan', 'Hindu', 'Budha', 'Konghucu']),
+            'pekerjaan' => $faker->jobTitle(),
+            'email' => $email,
+            'telp' => $faker->numerify('08##########')
+        ]);
+
+        for ($j = 0; $j < rand(0, 4); $j++) {
+            Persil::create([
+                'kode_persil' => 'P' . $faker->unique()->numerify('#####'),
+                'pemilik_warga_id' => $warga->warga_id,
+                'luas_m2' => $faker->numberBetween(50, 1000),
+                'penggunaan' => $faker->randomElement(['Rumah', 'Sawah', 'Kebun', 'Toko', 'Peternakkan']),
+                'alamat_lahan' => $faker->address(),
+                'rt' => $faker->numberBetween(1, 10),
+                'rw' => $faker->numberBetween(1, 10)
             ]);
-
-            $persilCount = rand(0, 4); 
-
-            for ($j = 0; $j < $persilCount; $j++) {
-                Persil::create([
-                    'kode_persil' => $faker->unique()->bothify('????'),
-                    'pemilik_warga_id' => $warga->warga_id,
-                    'luas_m2' => $faker->numberBetween(50, 1000),
-                    'penggunaan' => $faker->randomElement(['Perumahan', 'Pertanian', 'Perdagangan', 'Peternakkan']),
-                    'alamat_lahan' => $faker->address(),
-                    'rt' => $faker->numberBetween(1, 20),
-                    'rw' => $faker->numberBetween(1, 20)
-                ]);
-            }
         }
     }
+}
 }

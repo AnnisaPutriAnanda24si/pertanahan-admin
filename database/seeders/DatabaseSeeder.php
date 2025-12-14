@@ -11,27 +11,32 @@ use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $faker = Faker::create('id_ID');
 
         for ($i = 0; $i < 100; $i++) {
+            $name = $faker->unique()->name();
+            $email = strtolower(str_replace(' ', '', $name)) . '@example.com';
+
+            // Profile picture random: 30% kosong, 35% Man.jpg, 35% Woman.jpg
+            $profilePicture = null;
+            $random = rand(1, 100);
+
+            if ($random <= 35) {
+                $profilePicture = 'profile_pictures/Man.png';
+            } elseif ($random <= 70) {
+                $profilePicture = 'profile_pictures/Woman.png';
+            }
+
             User::create([
-                'name' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
+                'name' => $name,
+                'email' => $email,
+                'role' => 'Client',
                 'email_verified_at' => rand(0, 1) ? Carbon::now() : null,
-                'password' => Hash::make('password')
+                'password' => Hash::make('password'),
+                'profile_picture' => $profilePicture,
             ]);
         }
-
     }
 }

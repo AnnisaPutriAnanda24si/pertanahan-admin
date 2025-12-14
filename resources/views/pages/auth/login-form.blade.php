@@ -3,7 +3,7 @@
 @section('content')
     <!-- Kolom Kanan: Form Login -->
     <div class="col-lg-7 p-5">
-        <h3 class="text-center mb-4 text-danger fw-bold">Login ke Akun Anda</h3>
+        <h3 class="text-center mb-4 text-success fw-bold">Login ke Akun Anda</h3>
         @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul class="mb-0 ps-3">
@@ -69,9 +69,38 @@
                 <a href="{{ route('regis') }}" class="text-decoration-none small">Belum punya akun?</a>
             </div>
 
-            <!-- Diubah dari btn-primary menjadi btn-danger (merah gelap) -->
-            <button type="submit" class="btn btn-danger w-100">Login</button>
+            <!-- Tombol login berwarna hijau -->
+            <button type="submit" class="btn btn-success w-100 mb-4">Login</button>
         </form>
+
+        <!-- Pemisah -->
+        <div class="position-relative text-center mb-4">
+            <hr class="my-0">
+            <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted">atau login
+                dengan</span>
+        </div>
+
+        <!-- Tombol Login Social Media -->
+        <div class="row g-3">
+            <div class="col-md-4">
+                <button type="button"
+                    class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center py-2">
+                    <i class="fab fa-google me-2"></i> Google
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button type="button"
+                    class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center py-2">
+                    <i class="fab fa-facebook me-2"></i> Facebook
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button type="button"
+                    class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center py-2">
+                    <i class="fab fa-apple me-2"></i> Apple
+                </button>
+            </div>
+        </div>
     </div>
     <!-- End Kolom Kanan: Form Login -->
 @endsection

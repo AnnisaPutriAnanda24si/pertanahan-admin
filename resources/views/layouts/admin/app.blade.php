@@ -131,7 +131,7 @@
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
                                         {{-- Judul tabel --}}
-                                        <h4 class="card-title mb-0">Tabel</h4>
+                                        <h4 class="card-title mb-0"></h4>
 
                                         {{-- Tombol Kembali --}}
                                         <a href="{{ url()->previous() }}" class="btn btn-primary btn-border btn-round">

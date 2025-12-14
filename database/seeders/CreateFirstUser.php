@@ -14,13 +14,27 @@ class CreateFirstUser extends Seeder
      * Run the database seeds.
      */
 
-    public function run()
+ public function run()
     {
          User::create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
+            'role' => 'Admin',
             'password' => Hash::make('password123'),
         ]);
 
+        User::create([
+            'name' => 'Client',
+            'email' => 'client@example.com',
+            'role' => 'Client',
+            'password' => Hash::make('password123'),
+        ]);
+
+        User::create([
+            'name' => 'Staff',
+            'email' => 'staff@example.com',
+            'role' => 'Staff',
+            'password' => Hash::make('password123'),
+        ]);
     }
 }

@@ -65,10 +65,15 @@
                                 <tr>
                                     <td>
                                         @if ($item->profile_picture)
-                                            <img src="{{ Storage::url($item->profile_picture) }}" alt="Foto"
+                                            {{-- kalau ada foto profil --}}
+                                            <img src="{{ Storage::url($item->profile_picture) }}"
+                                                class="avatar-img rounded-circle" alt="Foto"
                                                 style="width: 40px; height: 40px; object-fit: cover;">
                                         @else
-                                            <i class="fas fa-user"></i>
+                                            {{-- kalau ga ada foto profil --}}
+                                            <img src="{{ Storage::url('placeholders/PlaceholderProfile.png') }}"
+                                                class="avatar-img rounded-circle" alt="Foto"
+                                                style="width: 40px; height: 40px; object-fit: cover;">
                                         @endif
                                     </td>
                                     <td>

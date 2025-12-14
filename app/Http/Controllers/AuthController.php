@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function about()
+    {
+         return view('pages.admin.about.about');
+    }
+        public function aboutme()
+    {
+         return view('pages.admin.about.about-me');
+    }
     public function login()
     {
         return view('pages.auth.login-form');

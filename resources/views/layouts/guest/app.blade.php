@@ -6,45 +6,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pertanahan Admin</title>
-
     <!-- Start Css -->
     @include('layouts.admin.css')
     {{-- End Css --}}
 
+    <style>
+        body {
+            background-image: url('{{ Storage::url('placeholders/sawah.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+    </style>
 </head>
 
-<body class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
-
+<body class="d-flex align-items-center justify-content-center min-vh-100">
     <div class="card shadow-lg overflow-hidden" style="max-width: 900px;">
         <div class="row g-0">
+            <!-- Kolom Kiri: Logo & Slideshow -->
+            <div
+                class="col-lg-5 d-none d-lg-flex flex-column justify-content-center align-items-center p-5 bg-dark text-white">
+                <div class="text-center w-100">
+                    <!-- Logo Bina Desa -->
+                    <div class="mb-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <img src="{{ Storage::url('placeholders/logo.svg') }}" alt="Logo Bina Desa" class="mb-3"
+                                height="60">
+                            <h2 class="fw-bold mb-1">BINA DESA</h2>
+                            <small class="text-white-50">Sistem Informasi Pertanahan</small>
+                        </div>
+                    </div>
 
-            <!-- Kolom Kiri: Logo -->
-<div
-    class="col-lg-5 d-none d-lg-flex flex-column justify-content-center align-items-center p-5 bg-dark text-white">
-    <div class="text-center">
-        <h1 class="fw-bold display-6 mb-3">Masuk Sistem</h1>
+                    {{-- Bootstrap Carousel --}}
+                    <div id="loginCarousel" class="carousel slide mb-3" data-bs-ride="carousel"
+                        style="width: 300px; margin: 0 auto;">
+                        <div class="carousel-inner rounded-3">
+                            <!-- Slide 1 -->
+                            <div class="carousel-item active">
+                                <img src="{{ Storage::url('placeholders/BPNPekanbaru.jpg') }}" class="d-block w-100"
+                                    alt="Gambar 1" style="height: 200px; object-fit: cover;"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=Gambar+1'">
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="carousel-item">
+                                <img src="{{ Storage::url('placeholders/sawah.jpg') }}" class="d-block w-100"
+                                    alt="Gambar 2" style="height: 200px; object-fit: cover;"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=Gambar+2'">
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="carousel-item">
+                                <img src="{{ Storage::url('placeholders/orang.jpg') }}" class="d-block w-100"
+                                    alt="Gambar 3" style="height: 200px; object-fit: cover;"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=Gambar+3'">
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="carousel-item">
+                                <img src="{{ Storage::url('placeholders/bendera.jpg') }}" class="d-block w-100"
+                                    alt="Gambar 4" style="height: 200px; object-fit: cover;"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=Gambar+4'">
+                            </div>
+                        </div>
+                        <!-- Optional controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#loginCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#loginCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
 
-        <img src="https://sulsel.atrbpn.go.id/assets/d5b3e3aa-02f5-4b89-b4e7-85678faf6b78"
-            class="img-fluid rounded-3 my-4 shadow-sm" alt="Logo Persil"
-            onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=LOGO+ERROR';">
-
-        {{-- Deskripsi kecil di bawah gambar --}}
-        <small class="text-white-50 d-block mb-4 fst-italic">
-            Kantor ATR/BPN Sulawesi Selatan
-        </small>
-
-        <p class="mt-4 mb-0 fs-6">
-            Kelola data Warga dan tanah dengan antarmuka yang modern, cepat, dan responsif.
-        </p>
-    </div>
-</div>
-
-            <!-- End Kolom Kiri: Logo -->
+                    {{-- Deskripsi --}}
+                    <p class="mt-3 mb-0 fs-6">
+                        Kelola data Warga dan Tanah dengan antarmuka yang modern, cepat, dan responsif
+                    </p>
+                </div>
+            </div>
+            <!-- End Kolom Kiri -->
 
             <!-- Kolom Kanan: Form Login -->
             @yield('content')
-            <!-- End Kolom Kanan: Form Login -->
-
+            <!-- End Kolom Kanan -->
         </div>
     </div>
 

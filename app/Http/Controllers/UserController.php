@@ -11,6 +11,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
     {
 
@@ -138,4 +139,6 @@ public function update(Request $request, $id)
         $data->delete();
         return redirect()->route('user.index')->with('success', 'Data berhasil dihapus');
     }
+
+
 }
