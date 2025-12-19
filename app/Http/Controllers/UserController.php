@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -66,7 +67,8 @@ public function store(Request $request)
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('pages.admin.user.show-user', compact('user'));
     }
 
     /**
@@ -139,6 +141,42 @@ public function update(Request $request, $id)
         $data->delete();
         return redirect()->route('user.index')->with('success', 'Data berhasil dihapus');
     }
+
+    public function updatePhoto(Request $request, $id)
+    {
+        $request->validate([
+            'profile_picture' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $user = User::findOrFail($id);
+
+        if ($user->profile_picture) {
+            Storage::delete('uploads/users/' . $user->profile_picture);
+        }
+
+        $file = $request->file('profile_picture');
+        $filename = time().'_'.$file->getClientOriginalName();
+        $file->storeAs('uploads/users', $filename);
+
+        $user->update([
+            'profile_picture' => $filename
+        ]);
+
+        return back()->with('success', 'Foto profil berhasil diperbarui');
+    }
+
+    public function deletePhoto($id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->profile_picture) {
+            Storage::delete('uploads/users/' . $user->profile_picture);
+            $user->update(['profile_picture' => null]);
+        }
+
+        return back()->with('success', 'Foto profil berhasil dihapus');
+    }
+
 
 
 }

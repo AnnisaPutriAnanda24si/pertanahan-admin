@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Pertanahan Admin</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     {{-- <link rel="icon" href="../assets/img/kaiadmin/favicon.ico" type="image/x-icon" /> --}}
 
     <!-- Start css -->
     @include('layouts.admin.css')
     {{-- End css --}}
-
 </head>
 
 <body>
@@ -131,7 +134,29 @@
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
                                         {{-- Judul tabel --}}
-                                        <h4 class="card-title mb-0"></h4>
+                                        <h4 class="card-title mb-0">Data
+                                            @if (request()->routeIs('warga.*'))
+                                                Warga
+                                            @elseif(request()->routeIs('persil.*'))
+                                                Persil
+                                            @elseif(request()->routeIs('dokumen_persil.*'))
+                                                Dokumen Persil
+                                            @elseif(request()->routeIs('sengketa_persil.*'))
+                                                Sengketa Persil
+                                            @elseif(request()->routeIs('peta_persil.*'))
+                                                Peta Persil
+                                            @elseif(request()->routeIs('warga.*'))
+                                                Warga
+                                            @elseif(request()->routeIs('media.*'))
+                                                Media
+                                            @elseif(request()->routeIs('jenis_penggunaan.*'))
+                                                Jenis Penggunaan
+                                            @elseif(request()->routeIs('user.*'))
+                                                User
+                                            @else
+                                                Tidak Diketahui
+                                            @endif
+                                        </h4>
 
                                         {{-- Tombol Kembali --}}
                                         <a href="{{ url()->previous() }}" class="btn btn-primary btn-border btn-round">

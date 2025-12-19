@@ -9,12 +9,29 @@ class MediaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $media = Media::orderBy('created_at', 'desc')
-                     ->paginate(15);
-        return view('pages.admin.media.tabel-media', compact('media'));
+        $data['filter'] = Media::select('ref_table')->distinct()->get();
+
+        $filterableColumns = ['ref_table'];
+
+        $searchableColumns = [
+            'file_name',
+            'caption',
+            'mime_type'
+        ];
+
+        $data['media'] = Media::query()
+            ->filter($request, $filterableColumns)
+            ->search($request, $searchableColumns)
+            ->orderBy('media_id', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('pages.admin.media.tabel-media', $data);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

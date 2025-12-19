@@ -14,12 +14,7 @@
                 @endif
 
                 <div class="table-responsive">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="mb-0">Data User</h4>
-                        <a href="{{ route('user.create') }}" class="btn btn-primary">
-                            <i class="fa fa-plus"></i> Tambah Data
-                        </a>
-                    </div>
+
                     <form method="GET" action="{{ route('user.index') }}" class="mb-3">
                         <div class="row">
                             <div class="col-md-3">
@@ -47,6 +42,13 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-end mb-3">
+                                    <a href="{{ route('user.create') }}" class="btn btn-primary">
+                                        <i class="fa fa-plus"></i> Tambah Data
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </form>
                     {{-- <table id="datatable-admin" class="display table table-striped table-hover"> --}}
@@ -64,17 +66,19 @@
                             @foreach ($user as $item)
                                 <tr>
                                     <td>
-                                        @if ($item->profile_picture)
-                                            {{-- kalau ada foto profil --}}
-                                            <img src="{{ Storage::url($item->profile_picture) }}"
-                                                class="avatar-img rounded-circle" alt="Foto"
-                                                style="width: 40px; height: 40px; object-fit: cover;">
-                                        @else
-                                            {{-- kalau ga ada foto profil --}}
-                                            <img src="{{ Storage::url('placeholders/PlaceholderProfile.png') }}"
-                                                class="avatar-img rounded-circle" alt="Foto"
-                                                style="width: 40px; height: 40px; object-fit: cover;">
-                                        @endif
+                                        <a href="{{ route('user.show', $item->id) }}">
+                                            @if ($item->profile_picture)
+                                                {{-- kalau ada foto profil --}}
+                                                <img src="{{ Storage::url($item->profile_picture) }}"
+                                                    class="avatar-img rounded-circle" alt="Foto"
+                                                    style="width: 40px; height: 40px; object-fit: cover;">
+                                            @else
+                                                {{-- kalau ga ada foto profil --}}
+                                                <img src="{{ Storage::url('placeholders/PlaceholderProfile.png') }}"
+                                                    class="avatar-img rounded-circle" alt="Foto"
+                                                    style="width: 40px; height: 40px; object-fit: cover;">
+                                            @endif
+                                        </a>
                                     </td>
                                     <td>
                                         <div class="user-info">

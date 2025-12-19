@@ -1,35 +1,26 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 
-class Media extends Model
+class PetaPersil extends Model
 {
-    protected $table = 'media';
-    protected $primaryKey = 'media_id';
+
+    protected $table = 'peta_persil';
+
+    protected $primaryKey = 'peta_id';
+
     protected $fillable = [
-        'ref_table',
-        'ref_id',
-        'file_name',
-        'caption',
-        'mime_type',
-        'sort_order',
+        'persil_id',
+        'geojson',
+        'panjang_m',
+        'lebar_m',
     ];
-
-    public function getUrlAttribute()
+    public function persil()
     {
-        return Storage::url('uploads/' . $this->ref_table . '/' . $this->file_name);
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::deleting(function ($media) {
-            Storage::disk('public')->delete('uploads/' . $media->ref_table . '/' . $media->file_name);
-        });
+        return $this->belongsTo(Persil::class, 'persil_id', 'persil_id');
     }
 
     public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
@@ -50,6 +41,5 @@ class Media extends Model
                 }
             });
         }
-        return $query;
     }
 }

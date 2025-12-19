@@ -16,12 +16,6 @@
                 {{-- AKHIR BLOK PESAN SUKSES --}}
 
                 <div class="table-responsive">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="mb-0">Data Jenis Penggunaan</h4>
-                        <a href="{{ route('jenis_penggunaan.create') }}" class="btn btn-primary">
-                            <i class="fa fa-plus"></i> Tambah Data
-                        </a>
-                    </div>
                     <form method="GET" action="{{ route('jenis_penggunaan.index') }}" class="mb-3">
                         <div class="row">
                             <div class="col-md-3">
@@ -46,6 +40,13 @@
                                         <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
                                             class="btn btn-outline-secondary ml-3" id="clear-search"> Clear</a>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-end mb-3">
+                                    <a href="{{ route('jenis_penggunaan.create') }}" class="btn btn-primary">
+                                        <i class="fa fa-plus"></i> Tambah Data
+                                    </a>
                                 </div>
                             </div>
                         </div>

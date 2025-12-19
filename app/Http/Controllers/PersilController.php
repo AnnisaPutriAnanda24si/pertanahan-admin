@@ -16,7 +16,6 @@ class PersilController extends Controller
      */
     public function index(Request $request)
     {
-        if (Auth::check()) {
         $data['filter'] = Persil::select('penggunaan')->distinct()->get();
         $filterableColumns = ['penggunaan'];
         $searchableColumns = ['penggunaan', 'kode_persil', 'luas_m2'];
@@ -26,7 +25,6 @@ class PersilController extends Controller
 					->paginate(10)
 					->withQueryString(); //join
         return view('pages.admin.persil.tabel-persil', $data);
-        }
     }
 
     /**
@@ -48,7 +46,6 @@ class PersilController extends Controller
         'nama' => $nama_pemilik
         ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -132,14 +129,14 @@ class PersilController extends Controller
      */
     public function edit(string $id)
     {
-    $persil = Persil::findOrFail($id);
+        $persil = Persil::findOrFail($id);
 
-    $media = Media::where('ref_table', 'persil')
-                 ->where('ref_id', $id)
-                 ->orderBy('sort_order')
-                 ->get();
+        $media = Media::where('ref_table', 'persil')
+                    ->where('ref_id', $id)
+                    ->orderBy('sort_order')
+                    ->get();
 
-    return view('pages.admin.persil.edit-persil', compact('persil', 'media'));
+        return view('pages.admin.persil.edit-persil', compact('persil', 'media'));
     }
 
     /**
@@ -197,7 +194,7 @@ class PersilController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-       {
+    {
         // Hapus semua media terlebih dahulu
         $mediaFiles = Media::where('ref_table', 'persil')
                           ->where('ref_id', $id)
@@ -235,4 +232,21 @@ class PersilController extends Controller
 
         return response()->json(['success' => false], 403);
     }
+
+    public function search(Request $request)
+    {
+        return response()->json(
+            Persil::with('warga')
+                ->searchPersil($request->q)
+                ->limit(10)
+                ->get()
+        );
+        // dd($request->q);
+        // $q = $request->q;
+
+        // return Persil::where('kode_persil', 'like', "%{$q}%")
+        //     ->limit(10)
+        //     ->get();
+    }
+
 }

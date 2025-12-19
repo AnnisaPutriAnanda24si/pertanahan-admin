@@ -57,7 +57,14 @@ class WargaController extends Controller
      */
     public function show(string $id)
     {
-        //
+            $warga = Warga::with([
+            'persil',
+            'persil.dokumen_persil',
+            'persil.sengketa_persil',
+            'persil.peta_persil'
+        ])->findOrFail($id);
+
+        return view('pages.admin.warga.show-warga', compact('warga'));
     }
 
     /**

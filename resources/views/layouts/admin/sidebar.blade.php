@@ -188,6 +188,23 @@
                                             <span class="sub-item">Tabel Media</span>
                                         </a>
                                     </li>
+                                    <li
+                                        class="nav-item {{ request()->routeIs('sengketa_persil.index') ? 'active' : '' }}">
+                                        <a href="{{ route('sengketa_persil.index') }}">
+                                            <span class="sub-item">Tabel Sengketa</span>
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="nav-item {{ request()->routeIs('dokumen_persil.index') ? 'active' : '' }}">
+                                        <a href="{{ route('dokumen_persil.index') }}">
+                                            <span class="sub-item">Tabel Dokumen</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->routeIs('peta_persil.index') ? 'active' : '' }}">
+                                        <a href="{{ route('peta_persil.index') }}">
+                                            <span class="sub-item">Tabel Peta</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

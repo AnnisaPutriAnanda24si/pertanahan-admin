@@ -19,6 +19,12 @@ class Warga extends Model
         'email'
     ];
 
+    public function persil()
+    {
+        return $this->hasMany(Persil::class, 'pemilik_warga_id', 'warga_id');
+    }
+
+
     public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
     {
     foreach ($filterableColumns as $column) {

@@ -74,7 +74,7 @@ class CreateWargaPersil extends Seeder
 {
     $faker = Faker::create('id_ID');
 
-    for ($i = 0; $i < 150; $i++) {
+    for ($i = 0; $i < 1000; $i++) {
         $name = $faker->unique()->name();
         $email = strtolower(str_replace(' ', '', $name)) . '@example.com';
 

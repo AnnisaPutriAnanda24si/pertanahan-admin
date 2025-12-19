@@ -15,12 +15,7 @@
                 @endif
 
                 <div class="table-responsive">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="mb-0">Data Warga</h4>
-                        <a href="{{ route('warga.create') }}" class="btn btn-primary">
-                            <i class="fa fa-plus"></i> Tambah Data
-                        </a>
-                    </div>
+
                     <form method="GET" action="{{ route('warga.index') }}" class="mb-3">
                         <div class="row">
                             <div class="col-md-3">
@@ -49,12 +44,20 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-end mb-3">
+                                    <a href="{{ route('warga.create') }}" class="btn btn-primary">
+                                        <i class="fa fa-plus"></i> Tambah Data
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </form>
                     {{-- <table id="datatable-admin" class="display table table-striped table-hover"> --}}
                     <table class="display table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
+                                <th>Detail</th>
                                 <th>Nama</th>
                                 <th>Pekerjaan / Agama</th>
                                 <th>Jenis Kelamin</th>
@@ -65,6 +68,12 @@
                         <tbody>
                             @foreach ($warga as $item)
                                 <tr>
+                                    <td>
+                                        <a href="{{ route('warga.show', $item->warga_id) }}"
+                                            class="btn btn-sm btn-secondary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
                                     <td>
                                         {{-- Menggunakan struktur layout seperti tabel Add Row --}}
                                         <div class="user-info">
