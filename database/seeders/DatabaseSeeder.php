@@ -24,9 +24,9 @@ class DatabaseSeeder extends Seeder
             $random = rand(1, 100);
 
             if ($random <= 35) {
-                $profilePicture = 'Man.png';
+                $profilePicture = null;
             } elseif ($random <= 70) {
-                $profilePicture = 'Woman.png';
+                $profilePicture = null;
             }
 
             User::create([
