@@ -56,6 +56,7 @@ class AuthController extends Controller
 
         $data['name']                  = $request->name;
         $data['email']                 = $request->email;
+        $data['role']                 = 'Client';
         $data['password']              = Hash::make($request->password);
         $data['password_confirmation'] = $request->password_confirmation;
 
