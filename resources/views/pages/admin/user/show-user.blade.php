@@ -37,9 +37,9 @@
 
                                 <h5 class="mb-3">Foto Profil</h5>
 
-                                @if ($user->profile_picture && Storage::exists('uploads/users/' . $user->profile_picture))
-                                    <img src="{{ Storage::url('uploads/users/' . $user->profile_picture) }}" class="rounded"
-                                        style="width:140px; height:140px; object-fit:cover;">
+                                @if ($user->profile_picture && Storage::exists('public/' . $user->profile_picture))
+                                        <img src="{{ Storage::url($user->profile_picture) }}" class="rounded"
+                                            style="width:140px; height:140px; object-fit:cover;">
                                 @else
                                     <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&size=140"
                                         class="rounded">
