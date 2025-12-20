@@ -4,11 +4,11 @@
                 <div class="logo-header" data-background-color="dark">
                     <a href="#" class="logo d-flex align-items-center">
                         <div class="me-3">
-                            <img src="{{ Storage::url('placeholders/logo.svg') }}" alt="Logo Bina Desa"
-                                class="navbar-brand" height="50" />
+                            <img src="{{ asset('assets/img/land.png') }}" alt="Logo Bina Desa" class="navbar-brand"
+                                height="50" />
                         </div>
                         <div class="d-none d-md-block">
-                            <h5 class="fw-bold text-white mb-0">BINA DESA</h5>
+                            <h5 class="fw-bold text-white mb-0">Manajemen Persil</h5>
                         </div>
                     </a>
                     <div class="nav-toggle">
@@ -37,7 +37,7 @@
                             <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="{{ route('warga.index') }}">
+                                        <a href="{{ route('dashboard.index') }}">
                                             <span class="sub-item">Admin</span>
                                         </a>
                                     </li>

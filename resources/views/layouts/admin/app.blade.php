@@ -154,7 +154,7 @@
                                             @elseif(request()->routeIs('user.*'))
                                                 User
                                             @else
-                                                Tidak Diketahui
+                                                Dashboard
                                             @endif
                                         </h4>
 

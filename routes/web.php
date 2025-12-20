@@ -32,8 +32,8 @@ Route::get('about', [AuthController::class, 'about'])->name('about');
 Route::get('aboutme', [AuthController::class, 'aboutme'])->name('aboutme');
 Route::get('/persil/search', [PersilController::class, 'search'])->name('persil.search');
 
-// Route::get('dashboard', [DashboardController::class, 'index'])
-//          ->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])
+         ->name('dashboard.index');
 
 Route::group(['middleware'=>['checkislogin']],function(){
 Route::group(['middleware'=>['checkrole:Admin,Staff']],function(){

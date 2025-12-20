@@ -84,7 +84,62 @@ warning-color : #ffa534
 danger-color : #f3545d
 
 -------------------------------------------------------------------*/
+            .card-stats .icon-big {
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+            }
 
+            .icon-big i {
+                font-size: 1.5rem;
+            }
+
+            .icon-primary {
+                background-color: rgba(23, 125, 255, 0.1);
+            }
+
+            .icon-info {
+                background-color: rgba(23, 125, 255, 0.1);
+            }
+
+            .icon-success {
+                background-color: rgba(0, 187, 170, 0.1);
+            }
+
+            .icon-secondary {
+                background-color: rgba(153, 153, 153, 0.1);
+            }
+
+            .map-placeholder {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .progress-info {
+                margin-top: 10px;
+            }
+
+            .progress-label span {
+                font-size: 0.8rem;
+            }
+
+            .table thead th {
+                font-weight: 600;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .badge {
+                font-weight: 500;
+                padding: 0.35em 0.65em;
+                font-size: 0.75em;
+            }
 #map {
     height: 400px;
     width: 100%;

@@ -5,11 +5,11 @@
                             {{-- <img src="https://www.henkel-gcc.com/resource/image/32556/1x1/1000/1000/64143212d44e70e6c927885764745c24/30FAE5974EBEDC298CD595B173662700/persil-logo.webp"
                                 alt="navbar brand" class="navbar-brand" height="80" /> --}}
                             <div class="me-3">
-                                <img src="{{ Storage::url('placeholders/logo.svg') }}" alt="Logo Bina Desa"
-                                    class="navbar-brand" height="50" />
+                                <img src="{{ asset('assets/img/land.png') }}" alt="Logo Bina Desa" class="navbar-brand"
+                                    height="50" />
                             </div>
                             <div class="d-none d-md-block">
-                                <h5 class="fw-bold mb-0">BINA DESA</h5>
+                                <h5 class="fw-bold mb-0">Manajemen Persil</h5>
                             </div>
                             {{-- <div class="input-group">
                                 <div class="input-group-prepend">

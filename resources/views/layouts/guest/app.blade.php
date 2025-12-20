@@ -43,9 +43,8 @@
                     <!-- Logo Bina Desa -->
                     <div class="mb-4">
                         <div class="d-flex flex-column align-items-center">
-                            <img src="{{ Storage::url('placeholders/logo.svg') }}" alt="Logo Bina Desa" class="mb-3"
-                                height="60">
-                            <h2 class="fw-bold mb-1">BINA DESA</h2>
+                            <img src="{{ asset('assets/img/land.png') }}" alt="Logo" class="mb-3" height="80">
+                            <h2 class="fw-bold mb-1">Manajemen Persil</h2>
                             <small class="text-white-50">Sistem Informasi Pertanahan</small>
                         </div>
                     </div>

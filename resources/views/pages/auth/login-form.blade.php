@@ -84,19 +84,19 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <button type="button"
-                    class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center py-2">
+                    class="btn btn-outline-danger rounded-pill w-100 d-flex align-items-center justify-content-center py-2">
                     <i class="fab fa-google me-2"></i> Google
                 </button>
             </div>
             <div class="col-md-4">
                 <button type="button"
-                    class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center py-2">
+                    class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center justify-content-center py-2">
                     <i class="fab fa-facebook me-2"></i> Facebook
                 </button>
             </div>
             <div class="col-md-4">
                 <button type="button"
-                    class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center py-2">
+                    class="btn btn-outline-dark rounded-pill w-100 d-flex align-items-center justify-content-center py-2">
                     <i class="fab fa-apple me-2"></i> Apple
                 </button>
             </div>

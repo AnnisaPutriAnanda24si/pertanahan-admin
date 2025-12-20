@@ -26,12 +26,21 @@
 
     <!-- jQuery Scrollbar -->
     <script src="{{ asset('assets') }}/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="{{ asset('assets') }}/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="{{ asset('assets') }}/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
     <!-- Datatables -->
     <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
     <!-- Kaiadmin JS -->
     <script src="{{ asset('assets') }}/js/kaiadmin.min.js"></script>
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="{{ asset('assets') }}/js/setting-demo2.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
     <script>
         $(document).ready(function() {
             // Baris 1195 (Kode asli template)
@@ -103,5 +112,3 @@
     </script>
     {{-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> --}}
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
