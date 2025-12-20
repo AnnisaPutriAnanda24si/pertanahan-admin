@@ -83,7 +83,7 @@ class MediaController extends Controller
         $media = Media::findOrFail($id);
         Storage::disk('public')->delete('uploads/' . $media->ref_table . '/' . $media->file_name);
         $media->delete();
-        return route('media.index')->with('success', 'Data berhasil dihapus');
+        return  redirect()->route('media.index')->with('success', 'Data berhasil dihapus');
         // return response()->json(['success' => true]);
     }
 }
