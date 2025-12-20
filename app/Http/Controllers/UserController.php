@@ -39,18 +39,22 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|string|unique:users,email',
-            'role' => 'required',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required'
-        ]);
+        try {
+            $data = $request->validate([
+                'name' => 'required|string|max:100',
+                'email' => 'required|string|unique:users,email',
+                'role' => 'required',
+                'password' => 'required|confirmed|min:8',
+                'password_confirmation' => 'required'
+            ]);
 
-        $data['password'] = Hash::make($data['password']);
-        User::create($data);
+            $data['password'] = Hash::make($data['password']);
+            User::create($data);
 
         return redirect()->route('user.index')->with('success','Penambahan Data Berhasil!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
 
     public function show(string $id)
@@ -74,7 +78,7 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255|unique:users,email,' . $user->id,
                 'role' => 'required|string',
-                'password' => 'nullable|string|min:6',
+                'password' => 'nullable|string|min:8',
                 'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             ]);
 
