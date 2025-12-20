@@ -12,7 +12,7 @@
 
     <style>
         body {
-            background-image: url('{{ Storage::url('placeholders/sawah.jpg') }}');
+            background-image: url('{{ asset('assets/img/placeholders/sawah.jpg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
