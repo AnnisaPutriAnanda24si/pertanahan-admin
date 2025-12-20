@@ -41,7 +41,7 @@ class AuthController extends Controller
             session(['last_login' => now()]);
             return redirect()->route('jenis_penggunaan.index')->with('success', 'Selamat datang kembali!');
         }else{
-            return redirect()->route('login.auth')->with('error', 'Password atau Email salah!');
+            return redirect()->route('login')->with('error', 'Password atau Email salah!');
         }
     }
 
