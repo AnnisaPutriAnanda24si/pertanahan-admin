@@ -55,25 +55,25 @@
                         <div class="carousel-inner rounded-3">
                             <!-- Slide 1 -->
                             <div class="carousel-item active">
-                                <img src="{{ Storage::url('placeholders/BPNPekanbaru.jpg') }}" class="d-block w-100"
+                                <img src="{{ asset('assets/img/placeholders/BPNPekanbaru.jpg') }}" class="d-block w-100"
                                     alt="Gambar 1" style="height: 200px; object-fit: cover;"
                                     onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=Gambar+1'">
                             </div>
                             <!-- Slide 2 -->
                             <div class="carousel-item">
-                                <img src="{{ Storage::url('placeholders/sawah.jpg') }}" class="d-block w-100"
+                                <img src="{{ asset('assets/img/placeholders/sawah.jpg') }}" class="d-block w-100"
                                     alt="Gambar 2" style="height: 200px; object-fit: cover;"
                                     onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=Gambar+2'">
                             </div>
                             <!-- Slide 3 -->
                             <div class="carousel-item">
-                                <img src="{{ Storage::url('placeholders/orang.jpg') }}" class="d-block w-100"
+                                <img src="{{ asset('assets/img/placeholders/orang.jpg') }}" class="d-block w-100"
                                     alt="Gambar 3" style="height: 200px; object-fit: cover;"
                                     onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=Gambar+3'">
                             </div>
                             <!-- Slide 4 -->
                             <div class="carousel-item">
-                                <img src="{{ Storage::url('placeholders/bendera.jpg') }}" class="d-block w-100"
+                                <img src="{{ asset('assets/img/placeholders/bendera.jpg') }}" class="d-block w-100"
                                     alt="Gambar 4" style="height: 200px; object-fit: cover;"
                                     onerror="this.onerror=null; this.src='https://placehold.co/300x200/ffffff/000000?text=Gambar+4'">
                             </div>
