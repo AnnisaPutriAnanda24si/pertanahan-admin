@@ -202,7 +202,7 @@
                             <div class="col-md-3 mb-3">
                                 <div class="text-center p-3 border rounded">
                                     <i class="fab fa-php fa-3x text-info mb-3"></i>
-                                    <h6 class="fw-bold">PHP 8.0</h6>
+                                    <h6 class="fw-bold">PHP 8.4.12</h6>
                                     <small class="text-muted">Backend Language</small>
                                 </div>
                             </div>

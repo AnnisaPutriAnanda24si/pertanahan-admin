@@ -123,6 +123,102 @@
                                     </li>
                                 @endif
                             @endif
+
+                            {{-- Modul Media --}}
+                            @if (request()->routeIs('media.*'))
+                                <li class="nav-item">
+                                    <a href="{{ route('media.index') }}">Media</a>
+                                </li>
+                                <li class="separator">
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+
+                                @if (request()->routeIs('media.create'))
+                                    <li class="nav-item">
+                                        <a href="#">Tambah</a>
+                                    </li>
+                                @elseif (request()->routeIs('media.edit'))
+                                    <li class="nav-item">
+                                        <a href="#">Edit</a>
+                                    </li>
+                                @elseif (request()->routeIs('media.show'))
+                                    <li class="nav-item">
+                                        <a href="#">Detail</a>
+                                    </li>
+                                @endif
+                            @endif
+
+                            {{-- Modul Peta Persil --}}
+                            @if (request()->routeIs('peta_persil.*'))
+                                <li class="nav-item">
+                                    <a href="{{ route('peta_persil.index') }}">Peta Persil</a>
+                                </li>
+                                <li class="separator">
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+
+                                @if (request()->routeIs('peta_persil.create'))
+                                    <li class="nav-item">
+                                        <a href="#">Tambah</a>
+                                    </li>
+                                @elseif (request()->routeIs('peta_persil.edit'))
+                                    <li class="nav-item">
+                                        <a href="#">Edit</a>
+                                    </li>
+                                @elseif (request()->routeIs('peta_persil.show'))
+                                    <li class="nav-item">
+                                        <a href="#">Detail</a>
+                                    </li>
+                                @endif
+                            @endif
+
+                            {{-- Modul Sengketa Persil --}}
+                            @if (request()->routeIs('sengketa_persil.*'))
+                                <li class="nav-item">
+                                    <a href="{{ route('sengketa_persil.index') }}">Sengketa Persil</a>
+                                </li>
+                                <li class="separator">
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+
+                                @if (request()->routeIs('sengketa_persil.create'))
+                                    <li class="nav-item">
+                                        <a href="#">Tambah</a>
+                                    </li>
+                                @elseif (request()->routeIs('sengketa_persil.edit'))
+                                    <li class="nav-item">
+                                        <a href="#">Edit</a>
+                                    </li>
+                                @elseif (request()->routeIs('sengketa_persil.show'))
+                                    <li class="nav-item">
+                                        <a href="#">Detail</a>
+                                    </li>
+                                @endif
+                            @endif
+
+                            {{-- Modul Dokumen Persil --}}
+                            @if (request()->routeIs('dokumen_persil.*'))
+                                <li class="nav-item">
+                                    <a href="{{ route('dokumen_persil.index') }}">Dokumen Persil</a>
+                                </li>
+                                <li class="separator">
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+
+                                @if (request()->routeIs('dokumen_persil.create'))
+                                    <li class="nav-item">
+                                        <a href="#">Tambah</a>
+                                    </li>
+                                @elseif (request()->routeIs('dokumen_persil.edit'))
+                                    <li class="nav-item">
+                                        <a href="#">Edit</a>
+                                    </li>
+                                @elseif (request()->routeIs('dokumen_persil.show'))
+                                    <li class="nav-item">
+                                        <a href="#">Detail</a>
+                                    </li>
+                                @endif
+                            @endif
                         </ul>
 
                     </div>

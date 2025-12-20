@@ -41,6 +41,16 @@
                                             <span class="sub-item">Admin</span>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('about') }}">
+                                            <span class="sub-item">Tentang Sistem</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('aboutme') }}">
+                                            <span class="sub-item">Tentang Pengembang</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -127,6 +137,7 @@
                                 </ul>
                             </div>
                         </li> --}}
+                        @if (in_array(Auth::user()->role, ['Admin', 'Staff']))
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#forms">
                                 <i class="fas fa-pen-square"></i>
@@ -135,25 +146,45 @@
                             </a>
                             <div class="collapse" id="forms">
                                 <ul class="nav nav-collapse">
-                                    <li class="nav-item {{ request()->routeIs('warga.create') ? 'active' : '' }}">
-                                        <a href="{{ route('warga.create') }}">
-                                            <span class="sub-item">Form Warga</span>
-                                        </a>
-                                    </li>
+
                                     <li
                                         class="nav-item {{ request()->routeIs('jenis_penggunaan.create') ? 'active' : '' }}">
                                         <a href="{{ route('jenis_penggunaan.create') }}">
                                             <span class="sub-item">Form Jenis Penggunaan</span>
                                         </a>
                                     </li>
+
+                                    <li class="nav-item {{ request()->routeIs('warga.create') ? 'active' : '' }}">
+                                        <a href="{{ route('warga.create') }}">
+                                            <span class="sub-item">Form Warga</span>
+                                        </a>
+                                    </li>
+
                                     <li class="nav-item {{ request()->routeIs('user.create') ? 'active' : '' }}">
                                         <a href="{{ route('user.create') }}">
                                             <span class="sub-item">Form user</span>
+                                        </a>
+
+                                    </li>
+                                    <li class="nav-item {{ request()->routeIs('sengketa_persil.create') ? 'active' : '' }}">
+                                        <a href="{{ route('sengketa_persil.create') }}">
+                                            <span class="sub-item">Form Sengketa</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->routeIs('dokumen_persil.create') ? 'active' : '' }}">
+                                        <a href="{{ route('dokumen_persil.create') }}">
+                                            <span class="sub-item">Form Dokumen</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->routeIs('peta_persil.create') ? 'active' : '' }}">
+                                        <a href="{{ route('peta_persil.create') }}">
+                                            <span class="sub-item">Form Peta</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#tables">
                                 <i class="fas fa-table"></i>
@@ -162,6 +193,13 @@
                             </a>
                             <div class="collapse show" id="tables">
                                 <ul class="nav nav-collapse">
+
+                                    <li class="nav-item {{ request()->routeIs('jenis_penggunaan.index') ? 'active' : '' }}">
+                                        <a href="{{ route('jenis_penggunaan.index') }}">
+                                            <span class="sub-item">Tabel Jenis Penggunaan</span>
+                                        </a>
+                                    </li>
+                                @if (in_array(Auth::user()->role, ['Admin', 'Staff']))
                                     <li class="nav-item {{ request()->routeIs('persil.index') ? 'active' : '' }}">
                                         <a href="{{ route('persil.index') }}">
                                             <span class="sub-item">Tabel Persil</span>
@@ -170,12 +208,6 @@
                                     <li class="nav-item {{ request()->routeIs('warga.index') ? 'active' : '' }}">
                                         <a href="{{ route('warga.index') }}">
                                             <span class="sub-item">Tabel Warga</span>
-                                        </a>
-                                    </li>
-                                    <li
-                                        class="nav-item {{ request()->routeIs('jenis_penggunaan.index') ? 'active' : '' }}">
-                                        <a href="{{ route('jenis_penggunaan.index') }}">
-                                            <span class="sub-item">Tabel Jenis Penggunaan</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{ request()->routeIs('user.index') ? 'active' : '' }}">
@@ -188,14 +220,12 @@
                                             <span class="sub-item">Tabel Media</span>
                                         </a>
                                     </li>
-                                    <li
-                                        class="nav-item {{ request()->routeIs('sengketa_persil.index') ? 'active' : '' }}">
+                                    <li class="nav-item {{ request()->routeIs('sengketa_persil.index') ? 'active' : '' }}">
                                         <a href="{{ route('sengketa_persil.index') }}">
                                             <span class="sub-item">Tabel Sengketa</span>
                                         </a>
                                     </li>
-                                    <li
-                                        class="nav-item {{ request()->routeIs('dokumen_persil.index') ? 'active' : '' }}">
+                                    <li class="nav-item {{ request()->routeIs('dokumen_persil.index') ? 'active' : '' }}">
                                         <a href="{{ route('dokumen_persil.index') }}">
                                             <span class="sub-item">Tabel Dokumen</span>
                                         </a>
@@ -205,6 +235,7 @@
                                             <span class="sub-item">Tabel Peta</span>
                                         </a>
                                     </li>
+                                @endif
                                 </ul>
                             </div>
                         </li>

@@ -42,6 +42,7 @@
                                     @endif
                                 </div>
                             </div>
+                            @if (in_array(Auth::user()->role, ['Admin', 'Staff']))
                             <div class="col-md-6">
                                 <div class="d-flex justify-content-end mb-3">
                                     <a href="{{ route('jenis_penggunaan.create') }}" class="btn btn-primary">
@@ -49,6 +50,7 @@
                                     </a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </form>
                     {{-- <table id="datatable-admin" class="display table table-striped table-hover"> --}}
@@ -58,7 +60,10 @@
                                 <th>NO</th>
                                 <th>Nama Penggunaan</th>
                                 <th>Keterangan</th>
+                                @if (in_array(Auth::user()->role, ['Admin', 'Staff']))
                                 <th style="width: 10%">Aksi</th>
+                                @endif
+
                             </tr>
                         </thead>
                         <tbody>
@@ -71,6 +76,7 @@
                                         </div>
                                     </td>
                                     <td>{{ $item->keterangan }}</td>
+                                    @if (in_array(Auth::user()->role, ['Admin', 'Staff']))
                                     <td>
                                         <div class="form-button-action">
                                             <a href="{{ route('jenis_penggunaan.edit', $item->jenis_id) }}"
@@ -91,6 +97,7 @@
                                             </form>
                                         </div>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
