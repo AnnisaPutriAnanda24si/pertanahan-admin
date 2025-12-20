@@ -69,12 +69,12 @@
                                         <a href="{{ route('user.show', $item->id) }}">
                                             @if ($item->profile_picture)
                                                 {{-- kalau ada foto profil --}}
-                                                <img src="{{ Storage::url($item->profile_picture) }}"
+                                                <img src="{{ asset('storage/' . $item->profile_picture) }}"
                                                     class="avatar-img rounded-circle" alt="Foto"
                                                     style="width: 40px; height: 40px; object-fit: cover;">
                                             @else
                                                 {{-- kalau ga ada foto profil --}}
-                                                <img src="{{ Storage::url('placeholders/PlaceholderProfile.png') }}"
+                                                <img src="{{ asset('assets/img/placeholders/PlaceholderProfile.png') }}"
                                                     class="avatar-img rounded-circle" alt="Foto"
                                                     style="width: 40px; height: 40px; object-fit: cover;">
                                             @endif

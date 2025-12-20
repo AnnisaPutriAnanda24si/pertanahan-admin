@@ -75,7 +75,7 @@
                                             <img src="{{ $item->url }}" width="70" height="60"
                                                 style="object-fit:cover; border-radius:6px;">
                                         @else
-                                            <span class="badge bg-info">FILE</span>
+                                            <span class="badge bg-info">File</span>
                                         @endif
                                     </td>
 
