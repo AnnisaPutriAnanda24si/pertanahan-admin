@@ -50,7 +50,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:5', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'password_confirmation' => ['required']
         ]);
 
