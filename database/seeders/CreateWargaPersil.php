@@ -4,9 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Warga;
 use App\Models\Persil;
+use App\Models\PetaPersil;
+use Faker\Factory as Faker;
+use App\Models\DokumenPersil;
+use App\Models\SengketaPersil;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Faker\Factory as Faker;
 
 // class CreateWargaPersil extends Seeder
 // {
