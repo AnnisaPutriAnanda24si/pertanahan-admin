@@ -18,7 +18,7 @@ class PersilController extends Controller
     {
         $data['filter'] = Persil::select('penggunaan')->distinct()->get();
         $filterableColumns = ['penggunaan'];
-        $searchableColumns = ['penggunaan', 'kode_persil', 'luas_m2'];
+        $searchableColumns = ['kode_persil', 'luas_m2'];
         $data['persil'] = Persil::with('warga')
                     ->filter($request, $filterableColumns, $searchableColumns)
                     ->search($request, $searchableColumns)

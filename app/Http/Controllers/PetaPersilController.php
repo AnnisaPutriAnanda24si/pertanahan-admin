@@ -12,9 +12,11 @@ class PetaPersilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $searchableColumns = ['panjang_m','lebar_m'];
         $peta_persil = PetaPersil::with('persil.warga')
+            ->search($request, $searchableColumns)
             ->paginate(10)
             ->withQueryString();
 

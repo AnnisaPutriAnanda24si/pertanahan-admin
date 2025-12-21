@@ -27,7 +27,7 @@ class MediaController extends Controller
             ->filter($request, $filterableColumns)
             ->search($request, $searchableColumns)
             ->orderBy('media_id', 'desc')
-            ->paginate(10)
+            ->paginate(5)
             ->withQueryString();
 
         return view('pages.admin.media.tabel-media', $data);

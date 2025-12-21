@@ -17,7 +17,7 @@ class DokumenPersilController extends Controller
         $data['filter'] = DokumenPersil::select('jenis_dokumen')->distinct()->get();
         $filterableColumns = ['jenis_dokumen'];
         $searchableColumns = ['nomor','keterangan'];
-        $data['dokumen_persil'] = DokumenPersil::with('persil')
+        $data['dokumen_persil'] = DokumenPersil::with('persil.warga')
                     ->filter($request, $filterableColumns, $searchableColumns)
                     ->search($request, $searchableColumns)
 					->paginate(10)

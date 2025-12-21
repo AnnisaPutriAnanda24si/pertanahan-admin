@@ -15,12 +15,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // ===================== RINGKASAN PETA =====================
+        // Ringkasan Peta Persil
         $totalPeta = PetaPersil::count();
         $totalGeojson = PetaPersil::whereNotNull('geojson')->where('geojson', '!=', '')->count();
         $withoutGeojson = $totalPeta - $totalGeojson;
 
-        // ===================== PERSIL USAGE PIE CHART =====================
+        // Label Persil
         $labelPenggunaan = Persil::select('penggunaan')
             ->whereNotNull('penggunaan')
             ->distinct()
@@ -31,77 +31,33 @@ class DashboardController extends Controller
             ->groupBy('penggunaan')
             ->pluck('total');
 
-        // ===================== GEOJSON COLLECTION =====================
-        $geojsonCollection = PetaPersil::whereNotNull('geojson')
-            ->where('geojson', '!=', '')
-            ->get()
-            ->pluck('geojson')
-            ->map(function($g){
-                return json_decode($g, true);
-            })
-            ->values()
-            ->toArray();
-
-        // Jika kosong, biar tidak error di Leaflet
         $geojsonData = [
             "type" => "FeatureCollection",
             "features" => []
         ];
 
-        foreach ($geojsonCollection as $geo) {
-            if ($geo && isset($geo["features"])) {
-                $geojsonData["features"] = array_merge(
-                    $geojsonData["features"],
-                    $geo["features"]
-                );
-            }
-        }
-
-            // ===================== WARGA =====================
+            // Hitung Warga
             $totalWarga = Warga::count();
             $wargaPunyaPersil = Warga::whereHas('persil')->count();
             $wargaTanpaPersil = $totalWarga - $wargaPunyaPersil;
 
-            // ===================== TOTAL PERSIL =====================
+            // Hitung Persil
             $totalPersil = Persil::count();
 
-            // ===================== DOKUMEN =====================
+            // Hitung Dokumen
             $totalDokumen = DokumenPersil::count();
-
             $dokumenPerJenis = DokumenPersil::select('jenis_dokumen', DB::raw('COUNT(*) as total'))
                 ->groupBy('jenis_dokumen')
                 ->pluck('total', 'jenis_dokumen');
 
-            // ===================== SENGKETA =====================
+            // Hitung Sengketa
             $totalSengketa = SengketaPersil::count();
-
             $statusSengketa = SengketaPersil::select('status', DB::raw('COUNT(*) as total'))
                 ->groupBy('status')
                 ->pluck('total', 'status');
-
             $sedangProses = $statusSengketa['proses'] ?? 0;
             $selesai = $statusSengketa['selesai'] ?? 0;
             $dibatalkan = $statusSengketa['dibatalkan'] ?? 0;
-
-
-            // ===================== GRAFIK BULANAN =====================
-$tahunSekarang = date('Y');
-$persilBulanan = Persil::select(
-        DB::raw('MONTH(created_at) as bulan'),
-        DB::raw('COUNT(*) as total')
-    )
-    ->whereYear('created_at', $tahunSekarang)
-    ->groupBy(DB::raw('MONTH(created_at)'))
-    ->orderBy('bulan')
-    ->get()
-    ->pluck('total', 'bulan');
-
-// Pastikan semua bulan ada (1-12), isi 0 jika tidak ada data
-$chartData = [];
-for ($bulan = 1; $bulan <= 12; $bulan++) {
-    $chartData[$bulan] = $persilBulanan[$bulan] ?? 0;
-}
-
 
 
         return view('pages.admin.dashboard', compact(
@@ -111,8 +67,6 @@ for ($bulan = 1; $bulan <= 12; $bulan++) {
             'labelPenggunaan',
             'dataPenggunaan',
             'geojsonData',
-
-            // tambahan baru
             'totalWarga',
             'wargaPunyaPersil',
             'wargaTanpaPersil',
@@ -125,7 +79,7 @@ for ($bulan = 1; $bulan <= 12; $bulan++) {
             'selesai',
             'dibatalkan',
 
-            'persilBulanan',
+            // 'persilBulanan',
             'totalPersil'
         ));
 
