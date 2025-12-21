@@ -29,7 +29,7 @@
                             </tr>
                             <tr>
                                 <th>Alamat</th>
-                                <td>{{ $warga->alamat }}</td>
+                                <td>{{ $warga->email }}</td>
                             </tr>
                             <tr>
                                 <th>Kontak</th>
