@@ -33,17 +33,17 @@ class JenisPenggunaanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-public function store(Request $request)
-{
-    $data = $request->validate([
-        'nama_penggunaan' => 'required|string|max:100|unique:jenis_penggunaan,nama_penggunaan',
-        'keterangan' => 'nullable|string',
-    ]);
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'nama_penggunaan' => 'required|string|max:100|unique:jenis_penggunaan,nama_penggunaan',
+            'keterangan' => 'nullable|string',
+        ]);
 
-    JenisPenggunaan::create($data);
+        JenisPenggunaan::create($data);
 
-    return redirect()->route('jenis_penggunaan.index')->with('success','Penambahan Data Berhasil!');
-}
+        return redirect()->route('jenis_penggunaan.index')->with('success','Penambahan Data Berhasil!');
+    }
 
     /**
      * Display the specified resource.
@@ -66,22 +66,20 @@ public function store(Request $request)
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-{
-    $jenis = JenisPenggunaan::findOrFail($id);
+    {
+        $jenis = JenisPenggunaan::findOrFail($id);
 
-    $data = $request->validate([
-        'nama_penggunaan' => ['required','string','max:255','unique:jenis_penggunaan,nama_penggunaan,' . $id . ',' . 'jenis_id'],
-        'keterangan' => 'nullable|string',
-    ]);
+        $data = $request->validate([
+            'nama_penggunaan' => ['required','string','max:255','unique:jenis_penggunaan,nama_penggunaan,' . $id . ',' . 'jenis_id'],
+            'keterangan' => 'nullable|string',
+        ]);
+        // $jenis->nama_penggunaan = $request->nama_penggunaan;
+        // $jenis->keterangan = $request->keterangan;
+        $jenis->fill($data);
+        $jenis->save();
 
-    // $jenis->nama_penggunaan = $request->nama_penggunaan;
-    // $jenis->keterangan = $request->keterangan;
-
-    $jenis->fill($data);
-    $jenis->save();
-
-    return redirect()->route('jenis_penggunaan.index')->with('success', 'Perubahan Data Jenis Penggunaan Berhasil!');
-}
+        return redirect()->route('jenis_penggunaan.index')->with('success', 'Perubahan Data Jenis Penggunaan Berhasil!');
+    }
 
     /**
      * Remove the specified resource from storage.

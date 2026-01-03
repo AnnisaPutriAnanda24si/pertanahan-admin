@@ -35,11 +35,6 @@ class PersilController extends Controller
         $warga_id = $request->warga_id; //ambil id dari URL
         $nama_pemilik = Warga::where('warga_id', $warga_id)->value('nama');
 
-        // dd(        [
-        // 'warga_id' => $warga_id,
-        // 'nama' => $nama_pemilik
-        // ]);
-
         return view('pages.admin.persil.form-persil',
         [
         'warga_id' => $warga_id,
@@ -50,7 +45,7 @@ class PersilController extends Controller
     /**
      * Store a newly created resource in storage.
      */
- public function store(Request $request)
+    public function store(Request $request)
     {
         // Validasi data persil
         $dataPersil = $request->validate([
@@ -71,10 +66,8 @@ class PersilController extends Controller
             ]);
         }
 
-        // 1. SIMPAN DATA PERSIL DULU (mendapatkan persil_id)
         $persil = Persil::create($dataPersil);
 
-        // 2. SIMPAN FILE MEDIA JIKA ADA
         if ($request->hasFile('media_files')) {
             foreach ($request->file('media_files') as $index => $file) {
                 // Simpan file ke storage
@@ -92,7 +85,6 @@ class PersilController extends Controller
                 ]);
             }
         }
-
         return redirect()->route('persil.index')
             ->with('success', 'Data persil dan file berhasil disimpan!');
     }

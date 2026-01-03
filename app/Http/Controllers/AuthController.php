@@ -17,15 +17,11 @@ class AuthController extends Controller
     {
          return view('pages.admin.about.about-me');
     }
+
     public function login()
     {
         return view('pages.auth.login-form');
     }
-        public function register()
-    {
-        return view('pages.auth.register-form');
-    }
-
     public function authentication(Request $request)
     {
 
@@ -44,7 +40,10 @@ class AuthController extends Controller
             return redirect()->route('login')->with('error', 'Password atau Email salah!');
         }
     }
-
+    public function register()
+    {
+        return view('pages.auth.register-form');
+    }
     public function registration(Request $request)
     {
         $request->validate([

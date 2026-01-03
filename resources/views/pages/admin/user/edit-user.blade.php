@@ -3,71 +3,84 @@
 @section('content')
     {{-- Start Main Content --}}
     {{-- form --}}
-    <div class="card-body">
-        <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
 
-            <div class="form-group">
-                <input type="file" id="profile_picture" name="profile_picture"
-                    class="form-control @error('profile_picture') is-invalid @enderror" accept="image/*">
-                <small class="text-muted">Format: JPG, PNG (Max: 2MB)</small>
-                @error('profile_picture')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <!-- Nama Penggunaan -->
-            <div class="form-group">
-                <label for="H">Nama</label>
-                <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}"
-                    placeholder="Masukkan nama" class="form-control @error('name') is-invalid @enderror">
-                @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <select name="role" id="role" class="form-select" value="{{ old('role', $user->role) }}">
-                    <option value="" disabled>Any</option>
-                    <option value="Client">Client</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Super Admin">Super Admin</option>
-                </select>
-            </div>
-
-            <!-- Keterangan -->
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" value="{{ old('email', $user->email) }}"
-                    placeholder="Masukkan nama penggunaan" class="form-control @error('email') is-invalid @enderror">
-                @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password Baru</label>
-                <input type="password" id="password" name="password"
-                    placeholder="Kosongkan jika tidak ingin mengganti password"
-                    class="form-control @error('password') is-invalid @enderror">
-                <small class="text-muted">Kosongkan jika tidak ingin mengganti password</small>
-                @error('password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <!-- Tombol (Simpan dan Batal) -->
-            <div class="card-action d-flex justify-content-end">
-                <button type="submit" class="btn btn-success me-2">
-                    <i class="fas fa-save"></i> Simpan Perubahan
-                </button>
-                <a href="{{ route('user.index') }}" class="btn btn-danger">
-                    <i class="fas fa-times"></i> Batal
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="card-title mb-0">Data Tabel
+                </h4>
+                <a href="{{ url()->previous() }}" class="btn btn-primary btn-border btn-round">
+                    <i class="fa fa-arrow-left"></i> Kembali
                 </a>
             </div>
-        </form>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <input type="file" id="profile_picture" name="profile_picture"
+                        class="form-control @error('profile_picture') is-invalid @enderror" accept="image/*">
+                    <small class="text-muted">Format: JPG, PNG (Max: 2MB)</small>
+                    @error('profile_picture')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Nama Penggunaan -->
+                <div class="form-group">
+                    <label for="H">Nama</label>
+                    <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}"
+                        placeholder="Masukkan nama" class="form-control @error('name') is-invalid @enderror">
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <select name="role" id="role" class="form-select" value="{{ old('role', $user->role) }}">
+                        <option value="" disabled>Any</option>
+                        <option value="Client">Client</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Super Admin">Super Admin</option>
+                    </select>
+                </div>
+
+                <!-- Keterangan -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" value="{{ old('email', $user->email) }}"
+                        placeholder="Masukkan nama penggunaan" class="form-control @error('email') is-invalid @enderror">
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password Baru</label>
+                    <input type="password" id="password" name="password"
+                        placeholder="Kosongkan jika tidak ingin mengganti password"
+                        class="form-control @error('password') is-invalid @enderror">
+                    <small class="text-muted">Kosongkan jika tidak ingin mengganti password</small>
+                    @error('password')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Tombol (Simpan dan Batal) -->
+                <div class="card-action d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success me-2">
+                        <i class="fas fa-save"></i> Simpan Perubahan
+                    </button>
+                    <a href="{{ route('user.index') }}" class="btn btn-danger">
+                        <i class="fas fa-times"></i> Batal
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
+
     {{-- form --}
     {{-- End Main Content --}}
 @endsection

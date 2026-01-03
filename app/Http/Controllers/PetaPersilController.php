@@ -30,10 +30,6 @@ class PetaPersilController extends Controller
     {
         return view('pages.admin.peta_persil.form-peta');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -42,16 +38,11 @@ class PetaPersilController extends Controller
             'panjang_m' => 'nullable|numeric',
             'lebar_m'   => 'nullable|numeric',
         ]);
-
         $peta = PetaPersil::create($data);
-
-        // simpan media (jika ada)
         if ($request->hasFile('media_files')) {
-            $request->validate([
-                'media_files.*' => 'file|mimes:geojson,json,jpg,jpeg,png,pdf|max:5120',
-                'media_captions.*' => 'nullable|string|max:255',
+            $request->validate([ 'media_files.*' => 'file|mimes:geojson,json,jpg,jpeg,png,pdf|max:5120',
+                                 'media_captions.*' => 'nullable|string|max:255',
             ]);
-
             foreach ($request->file('media_files') as $i => $file) {
                 $path = $file->store('uploads/peta_persil', 'public');
 
@@ -65,9 +56,7 @@ class PetaPersilController extends Controller
                 ]);
             }
         }
-
-        return redirect()->route('peta_persil.index')
-            ->with('success', 'Data peta persil berhasil disimpan');
+        return redirect()->route('peta_persil.index')->with('success', 'Data peta persil berhasil disimpan');
     }
 
     /**
@@ -92,7 +81,6 @@ class PetaPersilController extends Controller
                                               !str_contains($item->mime_type, 'word') &&
                                               !str_contains($item->mime_type, 'excel'));
 
-
         return view('pages.admin.peta_persil.show-peta', compact('peta', 'media', 'images', 'documents', 'others'));
     }
 
@@ -102,38 +90,24 @@ class PetaPersilController extends Controller
     public function edit($id)
     {
         $peta = PetaPersil::findOrFail($id);
-
-        $media = Media::where('ref_table', 'peta_persil')
-            ->where('ref_id', $id)
+        $media = Media::where('ref_table', 'peta_persil')->where('ref_id', $id)
             ->orderBy('sort_order')
             ->get();
-
         return view('pages.admin.peta_persil.edit-peta', compact('peta', 'media'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $peta = PetaPersil::findOrFail($id);
-
-        $data = $request->validate([
-            'geojson'   => 'required|string',
-            'panjang_m' => 'nullable|numeric',
-            'lebar_m'   => 'nullable|numeric',
-        ]);
-
+        $data = $request->validate(['geojson'   => 'required|string',
+                                    'panjang_m' => 'nullable|numeric',
+                                    'lebar_m'   => 'nullable|numeric']);
         $peta->update($data);
-
         if ($request->hasFile('media_files')) {
             $lastSort = Media::where('ref_table', 'peta_persil')
                 ->where('ref_id', $id)
                 ->max('sort_order') ?? -1;
-
             foreach ($request->file('media_files') as $i => $file) {
                 $path = $file->store('uploads/peta_persil', 'public');
-
                 Media::create([
                     'ref_table' => 'peta_persil',
                     'ref_id'    => $id,
@@ -142,9 +116,7 @@ class PetaPersilController extends Controller
                     'mime_type' => $file->getMimeType(),
                     'sort_order'=> ++$lastSort,
                 ]);
-            }
-        }
-
+            }}
         return redirect()->route('peta_persil.index')
             ->with('success', 'Data peta persil berhasil diperbarui');
     }

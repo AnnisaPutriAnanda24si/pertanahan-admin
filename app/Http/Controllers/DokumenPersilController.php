@@ -31,19 +31,7 @@ class DokumenPersilController extends Controller
     public function create(Request $request)
     {
          return view('pages.admin.dokumen_persil.form-dokumen');
-        // $persil_id = $request->persil_id;
-
-        // $persil = Persil::with('warga')->findOrFail($persil_id);
-
-        // return view('pages.admin.dokumen_persil.form-dokumen', [
-        //     'persil' => $persil
-        // ]);
     }
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validasi dokumen
@@ -52,20 +40,14 @@ class DokumenPersilController extends Controller
             'nomor'          => 'required|string|max:100',
             'jenis_dokumen'  => 'required|string|max:100',
             'keterangan'     => 'nullable|string|max:255',
-        ]);
-
-        // Validasi media (jika ada)
+        ]); //saya minimize agar cukup sekali ss saja
         if ($request->hasFile('media_files')) {
             $request->validate([
                 'media_files.*'    => 'file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx|max:2048',
                 'media_captions.*' => 'nullable|string|max:255',
             ]);
         }
-
-        // 1. Simpan dokumen persil
         $dokumen = DokumenPersil::create($data);
-
-        // 2. Simpan media
         if ($request->hasFile('media_files')) {
             foreach ($request->file('media_files') as $index => $file) {
                 $path = $file->store('uploads/dokumen_persil', 'public');
@@ -78,12 +60,8 @@ class DokumenPersilController extends Controller
                     'mime_type' => $file->getMimeType(),
                     'sort_order'=> $index,
                 ]);
-            }
-        }
-
-        return redirect()
-            ->route('dokumen_persil.index')
-            ->with('success', 'Dokumen persil berhasil disimpan');
+            }}
+        return redirect()->route('dokumen_persil.index')->with('success', 'Dokumen persil berhasil disimpan');
     }
 
 
@@ -92,11 +70,9 @@ class DokumenPersilController extends Controller
      */
     public function show(string $id)
     {
-        $dokumen = DokumenPersil::with('persil.warga')
-            ->findOrFail($id);
+        $dokumen = DokumenPersil::with('persil.warga')->findOrFail($id);
 
-        $media = Media::where('ref_table', 'dokumen_persil')
-            ->where('ref_id', $id)
+        $media = Media::where('ref_table', 'dokumen_persil')->where('ref_id', $id)
             ->orderBy('sort_order')
             ->get();
 
@@ -110,53 +86,34 @@ class DokumenPersilController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $dokumen = DokumenPersil::with('persil.warga')
-            ->findOrFail($id);
-
-        $media = Media::where('ref_table', 'dokumen_persil')
-            ->where('ref_id', $id)
+    public function edit(string $id){
+        $dokumen = DokumenPersil::with('persil.warga')->findOrFail($id);
+        $media = Media::where('ref_table', 'dokumen_persil')->where('ref_id', $id)
             ->orderBy('sort_order')
             ->get();
-
-        return view(
-            'pages.admin.dokumen_persil.edit-dokumen',
-            compact('dokumen', 'media')
+        return view('pages.admin.dokumen_persil.edit-dokumen', compact('dokumen', 'media')
         );
     }
-
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $dokumen = DokumenPersil::findOrFail($id);
-
-        // Validasi dokumen
         $data = $request->validate([
             'nomor'          => 'required|string|max:100',
             'jenis_dokumen'  => 'required|string|max:100',
             'keterangan'     => 'nullable|string|max:255',
-        ]);
-
+        ]); //saya minimze agar cukup sekali ss
         $dokumen->update($data);
-
-        // Validasi media baru
         if ($request->hasFile('media_files')) {
-            $request->validate([
+            $request->validate
+            ([
                 'media_files.*'    => 'file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx|max:2048',
                 'media_captions.*' => 'nullable|string|max:255',
-            ]);
-
+            ]); //minimize
             $lastSort = Media::where('ref_table', 'dokumen_persil')
                 ->where('ref_id', $id)
                 ->max('sort_order') ?? -1;
-
             foreach ($request->file('media_files') as $index => $file) {
                 $path = $file->store('uploads/dokumen_persil', 'public');
-
                 Media::create([
                     'ref_table' => 'dokumen_persil',
                     'ref_id'    => $id,
@@ -164,13 +121,7 @@ class DokumenPersilController extends Controller
                     'caption'   => $request->media_captions[$index] ?? null,
                     'mime_type' => $file->getMimeType(),
                     'sort_order'=> ++$lastSort,
-                ]);
-            }
-        }
-
-        return redirect()
-            ->route('dokumen_persil.index')
-            ->with('success', 'Dokumen persil berhasil diperbarui');
+                ]);}} return redirect()->route('dokumen_persil.index')->with('success', 'Dokumen persil berhasil diperbarui');
     }
 
 

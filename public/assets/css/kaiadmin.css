@@ -84,6 +84,18 @@ warning-color : #ffa534
 danger-color : #f3545d
 
 -------------------------------------------------------------------*/
+        .file-upload-item {
+            border-left: 3px solid #007bff;
+            padding-left: 10px;
+        }
+
+        .remove-file-btn {
+            transition: all 0.3s;
+        }
+
+        .remove-file-btn:hover {
+            transform: scale(1.1);
+        }
             .card-stats .icon-big {
                 width: 60px;
                 height: 60px;

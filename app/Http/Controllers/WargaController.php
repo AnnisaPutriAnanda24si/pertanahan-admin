@@ -35,22 +35,21 @@ class WargaController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $data = $request->validate([
-        'no_ktp' => 'required|string|unique:warga,no_ktp',
-        'nama' => 'required|string|max:255',
-        'jenis_kelamin' => 'required',
-        'agama' => 'required|string|max:50',
-        'pekerjaan' => 'required|string|max:255',
-        'telp' => 'nullable|string|max:15',
-        'email' => 'nullable|email|max:255|unique:warga,email',
-    ]);
+    {
+        $data = $request->validate([
+            'no_ktp' => 'required|string|unique:warga,no_ktp',
+            'nama' => 'required|string|max:255',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required|string|max:50',
+            'pekerjaan' => 'required|string|max:255',
+            'telp' => 'nullable|string|max:15',
+            'email' => 'nullable|email|max:255|unique:warga,email',
+        ]);
 
-    // Membuat record baru hanya dengan data yang sudah divalidasi
-    Warga::create($data);
+        Warga::create($data);
 
-    return redirect()->route('warga.index')->with('success','Penambahan Data Berhasil!');
-}
+        return redirect()->route('warga.index')->with('success','Penambahan Data Berhasil!');
+    }
 
     /**
      * Display the specified resource.
@@ -79,25 +78,25 @@ class WargaController extends Controller
     /**
      * Update the specified resource in storage.
      */
- public function update(Request $request, string $id)
-{
-    $warga = Warga::findOrFail($id);
+    public function update(Request $request, string $id)
+    {
+        $warga = Warga::findOrFail($id);
 
-    $data = $request->validate([
-        'no_ktp' => ['required','string','unique:warga,no_ktp,' . $id . ',' . 'warga_id'],
-        'nama' => 'required|string|max:255',
-        'jenis_kelamin' => 'required',
-        'agama' => 'required|string|max:50',
-        'pekerjaan' => 'required|string|max:255',
-        'telp' => 'required|string|max:15',
-        'email' => ['required','email','max:255','unique:warga,email,' . $id . ',' . 'warga_id'],
-    ]);
+        $data = $request->validate([
+            'no_ktp' => ['required','string','unique:warga,no_ktp,' . $id . ',' . 'warga_id'],
+            'nama' => 'required|string|max:255',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required|string|max:50',
+            'pekerjaan' => 'required|string|max:255',
+            'telp' => 'required|string|max:15',
+            'email' => ['required','email','max:255','unique:warga,email,' . $id . ',' . 'warga_id'],
+        ]);
 
-    $warga->fill($data);
-    $warga->save();
+        $warga->fill($data);
+        $warga->save();
 
-    return redirect()->route('warga.index')->with('success', 'Perubahan Data Warga Berhasil!');
-}
+        return redirect()->route('warga.index')->with('success', 'Perubahan Data Warga Berhasil!');
+    }
 
 
     /**
@@ -109,4 +108,11 @@ class WargaController extends Controller
         $data->delete();
         return redirect()->route('warga.index')->with('success', 'Data berhasil dihapus');
     }
+
+    public function search(Request $request) {
+    return Warga::query()
+        ->search($request, ['nama', 'nik', 'telp']) // Sebutkan kolom yang mau dicari
+        ->limit(10)
+        ->get();
+}
 }

@@ -90,7 +90,6 @@ class UserController extends Controller
                 $user->password = Hash::make($validated['password']);
             }
 
-            // PERBAIKAN: Upload ke 'uploads/profile_pictures/'
             if ($request->hasFile('profile_picture')) {
                 if ($user->profile_picture) {
                     Storage::disk('public')->delete($user->profile_picture);
@@ -117,13 +116,8 @@ class UserController extends Controller
 
     public function updatePhoto(Request $request, $id)
     {
-        $request->validate([
-            'profile_picture' => 'required|image|mimes:jpg,jpeg,png|max:2048'
-        ]);
-
+        $request->validate(['profile_picture' => 'required|image|mimes:jpg,jpeg,png|max:2048']);
         $user = User::findOrFail($id);
-
-        // PERBAIKAN: Upload ke 'uploads/profile_pictures/'
         if ($user->profile_picture) {
             Storage::disk('public')->delete($user->profile_picture);
         }
@@ -136,12 +130,9 @@ class UserController extends Controller
 
         return back()->with('success', 'Foto profil berhasil diperbarui');
     }
-
     public function deletePhoto($id)
     {
         $user = User::findOrFail($id);
-
-        // PERBAIKAN: Hapus dari 'uploads/profile_pictures/'
         if ($user->profile_picture) {
             Storage::disk('public')->delete($user->profile_picture);
             $user->update(['profile_picture' => null]);

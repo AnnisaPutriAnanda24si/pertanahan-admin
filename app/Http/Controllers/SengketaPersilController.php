@@ -33,20 +33,8 @@ class SengketaPersilController extends Controller
     public function create(Request $request)
     {
          return view('pages.admin.sengketa_persil.form-sengketa');
-        // $persil_id = $request->persil_id;
-
-        // $persil = Persil::with('warga')
-        //     ->findOrFail($persil_id);
-
-        // return view('pages.admin.sengketa_persil.form-sengketa', [
-        //     'persil' => $persil
-        // ]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -57,9 +45,7 @@ class SengketaPersilController extends Controller
             'kronologi'   => 'required|string',
             'penyelesaian'=> 'nullable|string',
         ]);
-
         $sengketa = SengketaPersil::create($data);
-        // ===== SIMPAN MEDIA =====
         if ($request->hasFile('media_files')) {
             foreach ($request->file('media_files') as $index => $file) {
                 $path = $file->store('uploads/sengketa', 'public');
@@ -116,8 +102,7 @@ class SengketaPersilController extends Controller
      */
     public function edit(string $id)
     {
-        $sengketa = SengketaPersil::with('persil.warga')
-            ->findOrFail($id);
+        $sengketa = SengketaPersil::with('persil.warga')->findOrFail($id);
 
         $media = Media::where('ref_table', 'sengketa_persil')
             ->where('ref_id', $id)
@@ -129,11 +114,6 @@ class SengketaPersilController extends Controller
             compact('sengketa', 'media')
         );
     }
-
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $sengketa = SengketaPersil::findOrFail($id);

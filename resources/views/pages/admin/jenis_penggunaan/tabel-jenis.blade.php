@@ -3,6 +3,16 @@
 @section('content')
     {{-- Start Main Content --}}
     {{-- Tabel --}}
+                                <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h4 class="card-title mb-0">Data Tabel
+                                        </h4>
+                                        <a href="{{ url()->previous() }}" class="btn btn-primary btn-border btn-round">
+                                            <i class="fa fa-arrow-left"></i> Kembali
+                                        </a>
+                                    </div>
+                                </div>
     <div class="card-body">
         <div class="flex-auto px-0 pt-0 pb-2">
             <div class="p-0 overflow-x-auto">
@@ -110,6 +120,7 @@
             </div>
         </div>
     </div>
+                            </div>
     {{-- Tabel --}}
     {{-- End Main Content --}}
 @endsection

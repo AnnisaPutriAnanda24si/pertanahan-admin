@@ -26,6 +26,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('about', [AuthController::class, 'about'])->name('about');
 Route::get('aboutme', [AuthController::class, 'aboutme'])->name('aboutme');
 Route::get('/persil/search', [PersilController::class, 'search'])->name('persil.search');
+Route::get('/warga/search', [WargaController::class, 'search'])->name('warga.search');
 
 Route::group(['middleware'=>['checkislogin']],function(){
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

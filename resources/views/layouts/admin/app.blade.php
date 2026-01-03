@@ -23,19 +23,16 @@
         <!-- End Sidebar -->
 
         <div class="main-panel">
-
             {{-- Start Header --}}
             @include('layouts.admin.header')
             {{-- End Header --}}
-
             {{-- Start Main Content --}}
             <div class="container">
                 <div class="page-inner">
-
                     {{-- Start Page Header --}}
                     <div class="page-header">
                         <h3 class="fw-bold mb-3">Pertanahan Admin</h3>
-                        <ul class="breadcrumbs mb-3">
+                        <ul class="breadcrumbs d-flex align-items-center mb-3">
                             <li class="nav-home">
                                 <a href="#">
                                     <i class="icon-home"></i>
@@ -226,10 +223,9 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            {{-- <div class="card">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        {{-- Judul tabel --}}
                                         <h4 class="card-title mb-0">Data
                                             @if (request()->routeIs('warga.*'))
                                                 Warga
@@ -253,15 +249,14 @@
                                                 Dashboard
                                             @endif
                                         </h4>
-
-                                        {{-- Tombol Kembali --}}
                                         <a href="{{ url()->previous() }}" class="btn btn-primary btn-border btn-round">
                                             <i class="fa fa-arrow-left"></i> Kembali
                                         </a>
                                     </div>
                                 </div>
                                 @yield('content')
-                            </div>
+                            </div> --}}
+                            @yield('content')
                         </div>
                     </div>
                 </div>
