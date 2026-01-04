@@ -62,7 +62,7 @@
                     <!-- Kolom Kanan -->
                     <div class="col-md-6">
                         <!-- Penggunaan -->
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="penggunaan">Penggunaan</label>
                             <input type="text" id="penggunaan" name="penggunaan" value="{{ old('penggunaan') }}"
                                 placeholder="Masukkan penggunaan lahan"
@@ -70,8 +70,25 @@
                             @error('penggunaan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="penggunaan">Penggunaan</label>
+                            <select id="penggunaan" name="penggunaan"
+                                class="form-control @error('penggunaan') is-invalid @enderror">
+                                <option value="">-- Pilih Penggunaan Lahan --</option>
+                                @foreach ($jenis_penggunaan as $item)
+                                    <option value="{{ $item->nama_penggunaan }}"
+                                        {{ old('penggunaan') == $item->nama_penggunaan ? 'selected' : '' }}>
+                                        {{ $item->nama_penggunaan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('penggunaan')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+
                 </div> {{-- Akhir Row 2 --}}
 
                 <div class="row">

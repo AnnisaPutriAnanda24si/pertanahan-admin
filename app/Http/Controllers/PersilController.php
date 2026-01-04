@@ -6,6 +6,7 @@ use App\Models\Media;
 use App\Models\Warga;
 use App\Models\Persil;
 use Illuminate\Http\Request;
+use App\Models\JenisPenggunaan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,11 +35,12 @@ class PersilController extends Controller
     {
         $warga_id = $request->warga_id; //ambil id dari URL
         $nama_pemilik = Warga::where('warga_id', $warga_id)->value('nama');
-
+        $jenis_penggunaan = JenisPenggunaan::all();
         return view('pages.admin.persil.form-persil',
         [
         'warga_id' => $warga_id,
-        'nama' => $nama_pemilik
+        'nama' => $nama_pemilik,
+        'jenis_penggunaan' => $jenis_penggunaan
         ]);
     }
 
@@ -122,13 +124,13 @@ class PersilController extends Controller
     public function edit(string $id)
     {
         $persil = Persil::findOrFail($id);
-
+        $jenis_penggunaan = JenisPenggunaan::all();
         $media = Media::where('ref_table', 'persil')
                     ->where('ref_id', $id)
                     ->orderBy('sort_order')
                     ->get();
 
-        return view('pages.admin.persil.edit-persil', compact('persil', 'media'));
+        return view('pages.admin.persil.edit-persil', compact('persil', 'media','jenis_penggunaan'));
     }
 
     /**
