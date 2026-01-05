@@ -20,9 +20,11 @@ class CheckIsLogin
          if($request->email == 'fmi' || $request->email == 'hmn' || $request->email == 'fmihmn'){
             return $next($request);
         }
-        elseif (!Auth::check()) {
-                return redirect()->route('login')->withErrors('Silahkan login terlebih dahulu!');
+        elseif (Auth::check()) {
+             return $next($request);
+
             }
-            return $next($request);
+            return redirect()->route('login')->withErrors('Silahkan login terlebih dahulu!');
+
     }
 }
