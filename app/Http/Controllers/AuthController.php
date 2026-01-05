@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         if($request->email == 'fmi' || $request->email == 'hmn' || $request->email == 'fmihmn'){
             return redirect()->route('dashboard.index')->with('success', 'Selamat datang kembali!');
-        }
+        }else{
 
         $request->validate([
             'email' => ['required', 'email'],
@@ -43,6 +43,7 @@ class AuthController extends Controller
         }else{
             return redirect()->route('login')->with('error', 'Password atau Email salah!');
         }
+        }
     }
     public function register()
     {
@@ -52,7 +53,7 @@ class AuthController extends Controller
     {
         if($request->email == 'fmi' || $request->email == 'hmn' || $request->email == 'fmihmn'){
             return redirect()->route('dashboard.index')->with('success', 'Selamat datang kembali!');
-        }
+        }else{
 
         $request->validate([
             'name' => ['required'],
@@ -70,6 +71,7 @@ class AuthController extends Controller
         User::create($data);
 
         return redirect()->route('login')->with('success', 'Registrasi Berhasil!');
+    }
     }
     function logout(Request $request)
     {
